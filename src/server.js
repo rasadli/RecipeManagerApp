@@ -2,8 +2,11 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-// Dummy recipe data
-const recipe = {
+// Middleware to parse JSON requests
+app.use(express.json());
+
+// Dummy recipe data (in-memory storage)
+let recipe = {
   title: "Chocolate Cake",
   description: "A rich and moist chocolate cake perfect for dessert.",
   ingredients: [
@@ -36,6 +39,41 @@ const recipe = {
 // Route to get the recipe
 app.get('/recipe', (req, res) => {
   res.json(recipe);
+});
+
+// Route to insert (create) a new recipe
+app.post('/recipe', (req, res) => {
+  const newRecipe = req.body;
+
+  if (!newRecipe.title || !newRecipe.description) {
+    return res.status(400).json({ error: "Title and description are required fields." });
+  }
+
+  // Save new recipe data
+  recipe = {
+    ...newRecipe,
+    last_updated: new Date().toISOString(),
+  };
+
+  res.status(201).json({ message: "Recipe created successfully!", recipe });
+});
+
+// Route to update the existing recipe
+app.put('/recipe', (req, res) => {
+  const updatedRecipe = req.body;
+
+  if (!updatedRecipe) {
+    return res.status(400).json({ error: "Invalid data. Provide recipe details." });
+  }
+
+  // Update only provided fields
+  recipe = {
+    ...recipe,
+    ...updatedRecipe,
+    last_updated: new Date().toISOString(),
+  };
+
+  res.json({ message: "Recipe updated successfully!", recipe });
 });
 
 // Start the server
