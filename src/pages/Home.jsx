@@ -1,5 +1,4 @@
-import React from "react"; 
-import Veggie from "../components/Veggie";
+import React from "react";
 import Popular from "../components/Popular";
 
 
@@ -7,7 +6,6 @@ import Popular from "../components/Popular";
 function Home() {
     return(
     <div>
-        <Veggie/>
         <Popular/>
     </div>
 );
