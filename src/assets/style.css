@@ -1,0 +1,204 @@
+/* General Styles */
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    color: #444;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+} */
+
+/* Recipe List */
+.recipe-list {
+    padding: 20px;
+}
+
+.recipe-list h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.recipe-list input,
+.recipe-list select {
+    padding: 8px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.recipe-list button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.recipe-list button:hover {
+    background-color: #45a049;
+}
+
+.recipe-list .filters {
+    margin-bottom: 20px;
+}
+
+.recipe-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Recipe Card */
+.recipe-card {
+    border: 1px solid #ddd; 
+    border-radius: 8px;
+    padding: 15px;
+    width: calc(31% - 20px);
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.recipe-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.recipe-card ul {
+    list-style-type: square;
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.recipe-card p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.recipe-card button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+/* Recipe Form */
+.recipe-form {
+    padding: 20px;
+    border: 1px solid #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.recipe-form h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.recipe-form input,
+.recipe-form textarea,
+.recipe-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.recipe-form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.recipe-form button:hover {
+    background-color: #45a049;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.navbar-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-item {
+    margin: 0 15px;
+}
+
+.navbar-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+    color: #ffd700;
+    /* Gold color on hover */
+}

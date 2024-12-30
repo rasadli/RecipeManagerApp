@@ -1,0 +1,182 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Pasta Carbonara",
+      "description": "A classic Italian pasta dish.",
+      "ingredients": [
+        "Pasta",
+        "Eggs",
+        "Parmesan",
+        "Bacon"
+      ],
+      "steps": [
+        "Boil pasta",
+        "Cook bacon",
+        "Mix eggs and cheese",
+        "Combine all ingredients"
+      ],
+      "tags": [
+        "Italian",
+        "Dinner",
+        "Quick Meal"
+      ],
+      "difficulty": "Easy",
+      "lastUpdated": "2024-01-01T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "title": "Chicken Alfredo",
+      "description": "A creamy pasta dish with tender chicken and rich Alfredo sauce.",
+      "ingredients": [
+        "Chicken",
+        "Fettuccine",
+        "Cream",
+        "Garlic",
+        "Parmesan",
+        "Butter"
+      ],
+      "steps": [
+        "Cook chicken",
+        "Boil fettuccine",
+        "Make Alfredo sauce",
+        "Combine pasta, chicken, and sauce"
+      ],
+      "tags": [
+        "Italian",
+        "Dinner",
+        "Comfort Food"
+      ],
+      "difficulty": "Medium",
+      "lastUpdated": "2024-01-05T14:30:00Z"
+    },
+    {
+      "id": 3,
+      "title": "Veggie Stir-fry",
+      "description": "A healthy mix of vegetables stir-fried with soy sauce.",
+      "ingredients": [
+        "Bell peppers",
+        "Carrots",
+        "Broccoli",
+        "Soy sauce",
+        "Ginger",
+        "Garlic"
+      ],
+      "steps": [
+        "Chop vegetables",
+        "Stir-fry vegetables",
+        "Add soy sauce and seasonings",
+        "Serve over rice"
+      ],
+      "tags": [
+        "Vegetarian",
+        "Dinner",
+        "Quick Meal"
+      ],
+      "difficulty": "Easy",
+      "lastUpdated": "2024-01-10T12:00:00Z"
+    },
+    {
+      "id": 4,
+      "title": "Beef Tacos",
+      "description": "Ground beef tacos with toppings like cheese, lettuce, and salsa.",
+      "ingredients": [
+        "Ground beef",
+        "Taco shells",
+        "Lettuce",
+        "Cheese",
+        "Salsa",
+        "Taco seasoning"
+      ],
+      "steps": [
+        "Cook ground beef",
+        "Prepare taco shells",
+        "Assemble tacos with toppings"
+      ],
+      "tags": [
+        "Mexican",
+        "Dinner",
+        "Quick Meal"
+      ],
+      "difficulty": "Easy",
+      "lastUpdated": "2024-01-12T08:00:00Z"
+    },
+    {
+      "id": 5,
+      "title": "Margherita Pizza",
+      "description": "A simple pizza topped with fresh tomatoes, mozzarella, and basil.",
+      "ingredients": [
+        "Pizza dough",
+        "Tomato sauce",
+        "Mozzarella",
+        "Basil",
+        "Olive oil"
+      ],
+      "steps": [
+        "Prepare pizza dough",
+        "Top with tomato sauce and cheese",
+        "Bake pizza",
+        "Add basil and olive oil"
+      ],
+      "tags": [
+        "Italian",
+        "Dinner",
+        "Vegetarian"
+      ],
+      "difficulty": "Medium",
+      "lastUpdated": "2024-01-15T17:45:00Z"
+    },
+    {
+      "id": 6,
+      "title": "Lemon Garlic Shrimp Pasta",
+      "description": "A flavorful shrimp pasta dish with a lemon and garlic sauce.",
+      "ingredients": [
+        "Shrimp",
+        "Spaghetti",
+        "Lemon",
+        "Garlic",
+        "Olive oil",
+        "Parmesan"
+      ],
+      "steps": [
+        "Cook shrimp",
+        "Boil spaghetti",
+        "Prepare lemon garlic sauce",
+        "Combine shrimp, pasta, and sauce"
+      ],
+      "tags": [
+        "Seafood",
+        "Dinner",
+        "Quick Meal"
+      ],
+      "difficulty": "Medium",
+      "lastUpdated": "2024-01-18T09:30:00Z"
+    },
+    {
+      "id": 7,
+      "title": "Vegetable Soup",
+      "description": "A hearty soup filled with vegetables and broth.",
+      "ingredients": [
+        "Carrots",
+        "Potatoes",
+        "Celery",
+        "Onion",
+        "Tomatoes",
+        "Vegetable broth"
+      ],
+      "steps": [
+        "Chop vegetables",
+        "Cook vegetables in broth",
+        "Simmer until tender",
+        "Season to taste"
+      ],
+      "tags": [
+        "Vegetarian",
+        "Soup",
+        "Healthy"
+      ],
+      "difficulty": "Easy",
+      "lastUpdated": "2024-01-20T11:00:00Z"
+    }
+  ]
+}
