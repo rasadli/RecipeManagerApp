@@ -4,12 +4,6 @@ const RecipeCard = ({ recipe, onEdit, onDelete }) => {
     return (
         <div
             className="recipe-card"
-            // style={{
-            //     border: "1px solid #ccc",
-            //     padding: "10px",
-            //     margin: "10px",
-            //     position: "relative",
-            // }}
         >
             <h2>{recipe.title}</h2>
             <p>{recipe.description}</p>

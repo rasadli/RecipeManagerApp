@@ -117,15 +117,21 @@ const RecipeList = () => {
                     />
                 ))}
             </div>
+
+            {/* Modal for RecipeForm */}
             {showForm && (
-                <RecipeForm
-                    recipe={editingRecipe}
-                    onSave={saveRecipe}
-                    onClose={() => {
-                        setShowForm(false);
-                        setEditingRecipe(null);
-                    }}
-                />
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <RecipeForm
+                            recipe={editingRecipe}
+                            onSave={saveRecipe}
+                            onClose={() => {
+                                setShowForm(false);
+                                setEditingRecipe(null);
+                            }}
+                        />
+                    </div>
+                </div>
             )}
         </div>
     );
