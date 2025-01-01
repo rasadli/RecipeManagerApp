@@ -118,7 +118,4 @@ const Card = styled.div`
   height:100%;
   background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.7));
   `;
-
-
-
 export default Popular
