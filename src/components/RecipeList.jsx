@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const RecipeList = () => {
+    const API_URL = "http://localhost:3001/recipes";
+
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState({ tag: "", difficulty: "" });
@@ -12,6 +14,10 @@ const RecipeList = () => {
     const [showForm, setShowForm] = useState(false);
     const [editingRecipe, setEditingRecipe] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(5); // Adjust the number of items per page
 
     useEffect(() => {
         fetchRecipes();
@@ -21,12 +27,16 @@ const RecipeList = () => {
         setLoading(true);
         fetch("http://localhost:3001/recipes")
             .then((res) => res.json())
-            .then((data) => setRecipes(data))
+            .then((data) => {
+                // Sort the recipes by the `order` property
+                const sortedRecipes = data.sort((a, b) => a.order - b.order);
+                setRecipes(sortedRecipes);
+            })
             .catch(() => {
                 Swal.fire("Error", "Failed to fetch recipes. Please try again.", "error");
             })
             .finally(() => setLoading(false));
-    };
+    };    
 
     const saveRecipe = (recipe) => {
         const url = recipe.id
@@ -49,7 +59,7 @@ const RecipeList = () => {
                     setRecipes((prev) => [...prev, data]);
                 }
                 setShowForm(false);
-                setEditingRecipe(null);
+                (null);
                 Swal.fire("Success", "Recipe saved successfully!", "success");
             })
             .catch(() => {
@@ -96,26 +106,43 @@ const RecipeList = () => {
             return 0;
         });
 
-    const handleDragEnd = (result) => {
-        const { destination, source } = result;
-        if (!destination) return;
+    // Calculate the indices of the recipes to show on the current page
+    const indexOfLastRecipe = currentPage * itemsPerPage;
+    const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
+    const currentRecipes = filteredRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
-        // Reorder the recipes array based on the drag result
+    const handleDragEnd = async (result) => {
+        if (!result.destination) return;
+    
         const reorderedRecipes = Array.from(recipes);
-        const [movedItem] = reorderedRecipes.splice(source.index, 1);
-        reorderedRecipes.splice(destination.index, 0, movedItem);
-
-        setRecipes(reorderedRecipes);
-
-        // Optionally, update the backend with the new order
-        fetch("http://localhost:3001/recipes/reorder", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ reorderedRecipes }),
-        }).catch(() => {
+        const [movedRecipe] = reorderedRecipes.splice(result.source.index, 1);
+        reorderedRecipes.splice(result.destination.index, 0, movedRecipe);
+    
+        // Update the order values
+        const updatedRecipes = reorderedRecipes.map((recipe, index) => ({
+            ...recipe,
+            order: index + 1, // Adjust the order field as necessary
+        }));
+    
+        setRecipes(updatedRecipes); // Optimistic UI update
+        try {
+            for (const recipe of updatedRecipes) {
+                console.log(recipe)
+                saveRecipe(recipe)
+            }
+            Swal.fire("Success", "Recipes reordered successfully!", "success");
+        } catch (error) {
+            console.error("Error updating order:", error);
             Swal.fire("Error", "Failed to reorder recipes. Please try again.", "error");
-        });
+        }
+        
     };
+
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
+
+    const totalPages = Math.ceil(filteredRecipes.length / itemsPerPage);
 
     return (
         <div className="recipe-list">
@@ -159,7 +186,7 @@ const RecipeList = () => {
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
                             >
-                                {filteredRecipes.map((recipe, index) => (
+                                {currentRecipes.map((recipe, index) => (
                                     <Draggable key={recipe.id} draggableId={recipe.id.toString()} index={index}>
                                         {(provided) => (
                                             <div
@@ -186,6 +213,24 @@ const RecipeList = () => {
                     </Droppable>
                 </DragDropContext>
             )}
+
+            <div className="pagination">
+                <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    Prev
+                </button>
+                <span>
+                    Page {currentPage} of {totalPages}
+                </span>
+                <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
+            </div>
 
             {showForm && (
                 <div className="modal-overlay">

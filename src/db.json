@@ -2,7 +2,7 @@
   "recipes": [
     {
       "id": "2",
-      "title": "Chicken Alfredo",
+      "title": "Chicken Alfredo11",
       "description": "A creamy pasta dish with tender chicken and rich Alfredo sauce.",
       "ingredients": [
         "Chicken",
@@ -12,19 +12,15 @@
         "Parmesan",
         "Butter"
       ],
-      "steps": [
-        "Cook chicken",
-        "Boil fettuccine",
-        "Make Alfredo sauce",
-        "Combine pasta, chicken, and sauce"
-      ],
       "tags": [
         "Italian",
         "Dinner",
         "Comfort Food"
       ],
       "difficulty": "Medium",
-      "lastUpdated": "2024-01-05T14:30:00Z"
+      "createdAt": "2025-01-01T22:20:36.032Z",
+      "updatedAt": "2025-01-01T22:20:36.033Z",
+      "order": 1
     },
     {
       "id": "3",
@@ -50,7 +46,8 @@
         "Quick Meal"
       ],
       "difficulty": "Easy",
-      "lastUpdated": "2024-01-10T12:00:00Z"
+      "lastUpdated": "2024-01-10T12:00:00Z",
+      "order": 3
     },
     {
       "id": "4",
@@ -75,7 +72,8 @@
         "Quick Meal"
       ],
       "difficulty": "Easy",
-      "lastUpdated": "2024-01-12T08:00:00Z"
+      "lastUpdated": "2024-01-12T08:00:00Z",
+      "order": 2
     },
     {
       "id": "5",
@@ -100,7 +98,8 @@
         "Vegetarian"
       ],
       "difficulty": "Medium",
-      "lastUpdated": "2024-01-15T17:45:00Z"
+      "lastUpdated": "2024-01-15T17:45:00Z",
+      "order": 4
     },
     {
       "id": "6",
@@ -126,7 +125,8 @@
         "Quick Meal"
       ],
       "difficulty": "Medium",
-      "lastUpdated": "2024-01-18T09:30:00Z"
+      "lastUpdated": "2024-01-18T09:30:00Z",
+      "order": 5
     },
     {
       "id": "7",
@@ -152,7 +152,8 @@
         "Healthy"
       ],
       "difficulty": "Easy",
-      "lastUpdated": "2024-01-20T11:00:00Z"
+      "lastUpdated": "2024-01-20T11:00:00Z",
+      "order": 6
     },
     {
       "id": "5425",
@@ -166,7 +167,8 @@
       ],
       "difficulty": "Hard",
       "createdAt": "2024-12-31T16:25:36.095Z",
-      "updatedAt": "2024-12-31T16:25:36.095Z"
+      "updatedAt": "2024-12-31T16:25:36.095Z",
+      "order": 7
     },
     {
       "id": "ee94",
@@ -180,7 +182,8 @@
       ],
       "difficulty": "Easy",
       "createdAt": "2025-01-01T17:00:39.794Z",
-      "updatedAt": "2025-01-01T17:00:39.794Z"
+      "updatedAt": "2025-01-01T17:00:39.794Z",
+      "order": 8
     }
   ]
 }
