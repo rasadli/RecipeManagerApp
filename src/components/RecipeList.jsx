@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RecipeCard from "./RecipeCard";
 import RecipeForm from "./RecipeForm";
+import Swal from "sweetalert2";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState([]);
@@ -9,15 +10,23 @@ const RecipeList = () => {
     const [sort, setSort] = useState("updated");
     const [showForm, setShowForm] = useState(false);
     const [editingRecipe, setEditingRecipe] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    // Fetch recipes
     useEffect(() => {
-        fetch("http://localhost:3000/recipes")
-            .then((res) => res.json())
-            .then((data) => setRecipes(data));
+        fetchRecipes();
     }, []);
 
-    // Add or Update Recipe
+    const fetchRecipes = () => {
+        setLoading(true);
+        fetch("http://localhost:3000/recipes")
+            .then((res) => res.json())
+            .then((data) => setRecipes(data))
+            .catch(() => {
+                Swal.fire("Error", "Failed to fetch recipes. Please try again.", "error");
+            })
+            .finally(() => setLoading(false));
+    };
+
     const saveRecipe = (recipe) => {
         const url = recipe.id
             ? `http://localhost:3000/recipes/${recipe.id}`
@@ -40,25 +49,39 @@ const RecipeList = () => {
                 }
                 setShowForm(false);
                 setEditingRecipe(null);
+                Swal.fire("Success", "Recipe saved successfully!", "success");
+            })
+            .catch(() => {
+                Swal.fire("Error", "Failed to save recipe. Please try again.", "error");
             });
     };
 
-    // Delete Recipe
     const deleteRecipe = (id) => {
-        fetch(`http://localhost:3000/recipes/${id}`, { method: "DELETE" }).then(
-            () => {
-                setRecipes((prev) => prev.filter((r) => r.id !== id));
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to undo this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "Cancel",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/recipes/${id}`, { method: "DELETE" })
+                    .then(() => {
+                        setRecipes((prev) => prev.filter((r) => r.id !== id));
+                        Swal.fire("Deleted!", "Your recipe has been deleted.", "success");
+                    })
+                    .catch(() => {
+                        Swal.fire("Error", "Failed to delete recipe. Please try again.", "error");
+                    });
             }
-        );
+        });
     };
 
-    // Filter and Sort Recipes
     const filteredRecipes = recipes
-        .filter(
-            (recipe) =>
-                recipe.title.toLowerCase().includes(search.toLowerCase()) ||
-                recipe.description.toLowerCase().includes(search.toLowerCase()) ||
-                recipe.ingredients.join(", ").toLowerCase().includes(search.toLowerCase())
+        .filter((recipe) =>
+            [recipe.title, recipe.description, recipe.ingredients.join(", ")]
+                .some((field) => field.toLowerCase().includes(search.toLowerCase()))
         )
         .filter(
             (recipe) =>
@@ -87,8 +110,11 @@ const RecipeList = () => {
                     value={filter.tag}
                 >
                     <option value="">All Tags</option>
-                    <option value="Dessert">Dessert</option>
-                    <option value="Vegetarian">Vegetarian</option>
+                    {Array.from(new Set(recipes.flatMap((r) => r.tags))).map((tag, index) => (
+                        <option key={index} value={tag}>
+                            {tag}
+                        </option>
+                    ))}
                 </select>
                 <select
                     onChange={(e) => setFilter({ ...filter, difficulty: e.target.value })}
@@ -104,21 +130,25 @@ const RecipeList = () => {
                     <option value="title">Title</option>
                 </select>
             </div>
-            <div className="recipe-cards">
-                {filteredRecipes.map((recipe) => (
-                    <RecipeCard
-                        key={recipe.id}
-                        recipe={recipe}
-                        onEdit={() => {
-                            setEditingRecipe(recipe);
-                            setShowForm(true);
-                        }}
-                        onDelete={() => deleteRecipe(recipe.id)}
-                    />
-                ))}
-            </div>
 
-            {/* Modal for RecipeForm */}
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <div className="recipe-cards">
+                    {filteredRecipes.map((recipe) => (
+                        <RecipeCard
+                            key={recipe.id}
+                            recipe={recipe}
+                            onEdit={() => {
+                                setEditingRecipe(recipe);
+                                setShowForm(true);
+                            }}
+                            onDelete={() => deleteRecipe(recipe.id)}
+                        />
+                    ))}
+                </div>
+            )}
+
             {showForm && (
                 <div className="modal-overlay">
                     <div className="modal-content">
