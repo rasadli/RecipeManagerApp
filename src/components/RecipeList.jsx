@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import RecipeCard from "./RecipeCard";
 import RecipeForm from "./RecipeForm";
 import Swal from "sweetalert2";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState([]);
@@ -18,7 +19,7 @@ const RecipeList = () => {
 
     const fetchRecipes = () => {
         setLoading(true);
-        fetch("http://localhost:3000/recipes")
+        fetch("http://localhost:3001/recipes")
             .then((res) => res.json())
             .then((data) => setRecipes(data))
             .catch(() => {
@@ -29,8 +30,8 @@ const RecipeList = () => {
 
     const saveRecipe = (recipe) => {
         const url = recipe.id
-            ? `http://localhost:3000/recipes/${recipe.id}`
-            : "http://localhost:3000/recipes";
+            ? `http://localhost:3001/recipes/${recipe.id}`
+            : "http://localhost:3001/recipes";
         const method = recipe.id ? "PUT" : "POST";
 
         fetch(url, {
@@ -66,7 +67,7 @@ const RecipeList = () => {
             cancelButtonText: "Cancel",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/recipes/${id}`, { method: "DELETE" })
+                fetch(`http://localhost:3001/recipes/${id}`, { method: "DELETE" })
                     .then(() => {
                         setRecipes((prev) => prev.filter((r) => r.id !== id));
                         Swal.fire("Deleted!", "Your recipe has been deleted.", "success");
@@ -80,8 +81,9 @@ const RecipeList = () => {
 
     const filteredRecipes = recipes
         .filter((recipe) =>
-            [recipe.title, recipe.description, recipe.ingredients.join(", ")]
-                .some((field) => field.toLowerCase().includes(search.toLowerCase()))
+            [recipe.title, recipe.description, recipe.ingredients.join(", ")].some((field) =>
+                field.toLowerCase().includes(search.toLowerCase())
+            )
         )
         .filter(
             (recipe) =>
@@ -94,6 +96,27 @@ const RecipeList = () => {
             return 0;
         });
 
+    const handleDragEnd = (result) => {
+        const { destination, source } = result;
+        if (!destination) return;
+
+        // Reorder the recipes array based on the drag result
+        const reorderedRecipes = Array.from(recipes);
+        const [movedItem] = reorderedRecipes.splice(source.index, 1);
+        reorderedRecipes.splice(destination.index, 0, movedItem);
+
+        setRecipes(reorderedRecipes);
+
+        // Optionally, update the backend with the new order
+        fetch("http://localhost:3001/recipes/reorder", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ reorderedRecipes }),
+        }).catch(() => {
+            Swal.fire("Error", "Failed to reorder recipes. Please try again.", "error");
+        });
+    };
+
     return (
         <div className="recipe-list">
             <h1>Recipe Manager</h1>
@@ -105,10 +128,7 @@ const RecipeList = () => {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
-                <select
-                    onChange={(e) => setFilter({ ...filter, tag: e.target.value })}
-                    value={filter.tag}
-                >
+                <select onChange={(e) => setFilter({ ...filter, tag: e.target.value })} value={filter.tag}>
                     <option value="">All Tags</option>
                     {Array.from(new Set(recipes.flatMap((r) => r.tags))).map((tag, index) => (
                         <option key={index} value={tag}>
@@ -116,10 +136,7 @@ const RecipeList = () => {
                         </option>
                     ))}
                 </select>
-                <select
-                    onChange={(e) => setFilter({ ...filter, difficulty: e.target.value })}
-                    value={filter.difficulty}
-                >
+                <select onChange={(e) => setFilter({ ...filter, difficulty: e.target.value })} value={filter.difficulty}>
                     <option value="">All Difficulty</option>
                     <option value="Easy">Easy</option>
                     <option value="Medium">Medium</option>
@@ -134,19 +151,40 @@ const RecipeList = () => {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <div className="recipe-cards">
-                    {filteredRecipes.map((recipe) => (
-                        <RecipeCard
-                            key={recipe.id}
-                            recipe={recipe}
-                            onEdit={() => {
-                                setEditingRecipe(recipe);
-                                setShowForm(true);
-                            }}
-                            onDelete={() => deleteRecipe(recipe.id)}
-                        />
-                    ))}
-                </div>
+                <DragDropContext onDragEnd={handleDragEnd}>
+                    <Droppable droppableId="recipes-list" direction="vertical">
+                        {(provided) => (
+                            <div
+                                className="recipe-cards"
+                                ref={provided.innerRef}
+                                {...provided.droppableProps}
+                            >
+                                {filteredRecipes.map((recipe, index) => (
+                                    <Draggable key={recipe.id} draggableId={recipe.id.toString()} index={index}>
+                                        {(provided) => (
+                                            <div
+                                                className="recipe-card"
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                            >
+                                                <RecipeCard
+                                                    recipe={recipe}
+                                                    onEdit={() => {
+                                                        setEditingRecipe(recipe);
+                                                        setShowForm(true);
+                                                    }}
+                                                    onDelete={() => deleteRecipe(recipe.id)}
+                                                />
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
             )}
 
             {showForm && (
