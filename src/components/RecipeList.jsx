@@ -3,11 +3,22 @@ import RecipeCard from "./RecipeCard";
 import RecipeForm from "./RecipeForm";
 import Swal from "sweetalert2";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import emailjs from '@emailjs/browser';
+import SendRecipesModal from "./SendRecipesModal";  // Import the modal
 
 const RecipeList = () => {
     const API_URL = "http://localhost:3001/recipes";
+    const SERVICE_ID = "service_kmv94ha";
+    const TEMPLATE_ID = "template_sr47u4v";
+    const PUBLIC_KEY = "ei2ZgBQrzkHFNjw6y";
+
+    const [userName, setUserName] = useState("");
+    // const [userEmail, setUserEmail] = useState("");
+    const [recipentEmail, setRecipentEmail] = useState("");
+    const [emailSubject, setEmailSubject] = useState("");
 
     const [recipes, setRecipes] = useState([]);
+    const [selectedRecipes, setSelectedRecipes] = useState([]);
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState({ tag: "", difficulty: "" });
     const [sort, setSort] = useState("updated");
@@ -17,7 +28,10 @@ const RecipeList = () => {
 
     // Pagination state
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(5); // Adjust the number of items per page
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+
+    // Modal visibility state
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         fetchRecipes();
@@ -25,10 +39,9 @@ const RecipeList = () => {
 
     const fetchRecipes = () => {
         setLoading(true);
-        fetch("http://localhost:3001/recipes")
+        fetch(API_URL)
             .then((res) => res.json())
             .then((data) => {
-                // Sort the recipes by the `order` property
                 const sortedRecipes = data.sort((a, b) => a.order - b.order);
                 setRecipes(sortedRecipes);
             })
@@ -36,12 +49,10 @@ const RecipeList = () => {
                 Swal.fire("Error", "Failed to fetch recipes. Please try again.", "error");
             })
             .finally(() => setLoading(false));
-    };    
+    };
 
     const saveRecipe = (recipe) => {
-        const url = recipe.id
-            ? `http://localhost:3001/recipes/${recipe.id}`
-            : "http://localhost:3001/recipes";
+        const url = recipe.id ? `${API_URL}/${recipe.id}` : API_URL;
         const method = recipe.id ? "PUT" : "POST";
 
         fetch(url, {
@@ -59,7 +70,6 @@ const RecipeList = () => {
                     setRecipes((prev) => [...prev, data]);
                 }
                 setShowForm(false);
-                (null);
                 Swal.fire("Success", "Recipe saved successfully!", "success");
             })
             .catch(() => {
@@ -77,7 +87,7 @@ const RecipeList = () => {
             cancelButtonText: "Cancel",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3001/recipes/${id}`, { method: "DELETE" })
+                fetch(`${API_URL}/${id}`, { method: "DELETE" })
                     .then(() => {
                         setRecipes((prev) => prev.filter((r) => r.id !== id));
                         Swal.fire("Deleted!", "Your recipe has been deleted.", "success");
@@ -87,6 +97,68 @@ const RecipeList = () => {
                     });
             }
         });
+    };
+
+    const toggleSelectRecipe = (recipeId) => {
+        setSelectedRecipes((prev) =>
+            prev.includes(recipeId)
+                ? prev.filter((id) => id !== recipeId)
+                : [...prev, recipeId]
+        );
+    };
+
+    const sendSelectedRecipes = () => {
+        if (selectedRecipes.length === 0) {
+            alert("No recipes selected to share!");
+            return;
+        }
+
+        if (!userName || !recipentEmail || !emailSubject) {
+            alert("Please provide your name, the recipient's email, and the email subject!");
+            return;
+        }
+
+        const recipesToSend = recipes.filter((recipe) =>
+            selectedRecipes.includes(recipe.id)
+        );
+        console.log(recipesToSend)
+
+        const formattedRecipes = recipesToSend
+        .map((recipe, index) => {
+          // Create an array to hold the formatted recipe details
+          const recipeDetails = [
+            `Recipe ${index + 1}:`,
+            `- Name: ${recipe.title}`,
+            recipe.description ? `- Description: ${recipe.description}` : '',
+            recipe.ingredients.length > 0 ? `- Ingredients: ${recipe.ingredients.join(", ")}` : '- Ingredients: Not available',
+            recipe.steps.length > 0 ? `- Instructions: ${recipe.steps.join(", ")}` : '- Instructions: Not available',
+            recipe.tags.length > 0 ? `- Tags: ${recipe.tags.join(", ")}` : '- Tags: Not available',
+            recipe.difficulty ? `- Difficulty: ${recipe.difficulty}` : '- Difficulty: Not available',
+            recipe.lastUpdated ? `- Last Updated: ${new Date(recipe.lastUpdated).toLocaleString()}` : '- Last Updated: Not available',
+            recipe.order !== undefined ? `- Order: ${recipe.order}` : '- Order: Not available'
+          ];
+      
+          return recipeDetails.filter(detail => detail !== '').join("\n");
+        })
+        .join("\n\n");
+
+        const emailPayload = {
+            subject: emailSubject,
+            email_to: recipentEmail,
+            message: `Hello,\n\nHere are the selected recipes:\n\n${formattedRecipes}\n\nBest regards,\n${userName}`,
+            from_name: userName,
+        };
+
+        emailjs
+            .send(SERVICE_ID, TEMPLATE_ID, emailPayload, PUBLIC_KEY)
+            .then(() => {
+                Swal.fire("Success", "Recipes sent successfully!", "success");
+                setSelectedRecipes([]);
+                setIsModalOpen(false);  // Close modal after sending email
+            })
+            .catch(() => {
+                Swal.fire("Error", "Failed to send recipes. Please try again.", "error");
+            });
     };
 
     const filteredRecipes = recipes
@@ -106,36 +178,31 @@ const RecipeList = () => {
             return 0;
         });
 
-    // Calculate the indices of the recipes to show on the current page
     const indexOfLastRecipe = currentPage * itemsPerPage;
     const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
     const currentRecipes = filteredRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
     const handleDragEnd = async (result) => {
         if (!result.destination) return;
-    
+
         const reorderedRecipes = Array.from(recipes);
         const [movedRecipe] = reorderedRecipes.splice(result.source.index, 1);
         reorderedRecipes.splice(result.destination.index, 0, movedRecipe);
-    
-        // Update the order values
+
         const updatedRecipes = reorderedRecipes.map((recipe, index) => ({
             ...recipe,
-            order: index + 1, // Adjust the order field as necessary
+            order: index + 1,
         }));
-    
-        setRecipes(updatedRecipes); // Optimistic UI update
+
+        setRecipes(updatedRecipes);
         try {
             for (const recipe of updatedRecipes) {
-                console.log(recipe)
-                saveRecipe(recipe)
+                saveRecipe(recipe);
             }
             Swal.fire("Success", "Recipes reordered successfully!", "success");
         } catch (error) {
-            console.error("Error updating order:", error);
             Swal.fire("Error", "Failed to reorder recipes. Please try again.", "error");
         }
-        
     };
 
     const handlePageChange = (newPage) => {
@@ -173,6 +240,7 @@ const RecipeList = () => {
                     <option value="updated">Last Updated</option>
                     <option value="title">Title</option>
                 </select>
+                <button onClick={() => setIsModalOpen(true)}>Send Selected Recipes</button>
             </div>
 
             {loading ? (
@@ -197,6 +265,8 @@ const RecipeList = () => {
                                             >
                                                 <RecipeCard
                                                     recipe={recipe}
+                                                    isSelected={selectedRecipes.includes(recipe.id)}
+                                                    onSelect={toggleSelectRecipe}
                                                     onEdit={() => {
                                                         setEditingRecipe(recipe);
                                                         setShowForm(true);
@@ -214,38 +284,20 @@ const RecipeList = () => {
                 </DragDropContext>
             )}
 
-            <div className="pagination">
-                <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                >
-                    Prev
-                </button>
-                <span>
-                    Page {currentPage} of {totalPages}
-                </span>
-                <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                >
-                    Next
-                </button>
-            </div>
-
-            {showForm && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <RecipeForm
-                            recipe={editingRecipe}
-                            onSave={saveRecipe}
-                            onClose={() => {
-                                setShowForm(false);
-                                setEditingRecipe(null);
-                            }}
-                        />
-                    </div>
-                </div>
-            )}
+            {/* Render the modal */}
+            <SendRecipesModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                userName={userName}
+                setUserName={setUserName}
+                // userEmail={userEmail}
+                // setUserEmail={setUserEmail}
+                recipentEmail={recipentEmail}
+                setRecipentEmail={setRecipentEmail}
+                emailSubject={emailSubject}
+                setEmailSubject={setEmailSubject}
+                onSend={sendSelectedRecipes}
+            />
         </div>
     );
 };

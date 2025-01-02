@@ -1,8 +1,13 @@
 import React from "react";
 
-const RecipeCard = ({ recipe, onEdit, onDelete }) => {
+const RecipeCard = ({ recipe, onEdit, onDelete, onSelect, isSelected }) => {
     return (
-        < >
+        <>
+            <input
+                type="checkbox"
+                checked={isSelected}
+                onChange={() => onSelect(recipe.id)}
+            />
             <h2>{recipe.title}</h2>
             <p>{recipe.description}</p>
             <ul>
