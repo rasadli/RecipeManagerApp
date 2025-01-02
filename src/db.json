@@ -156,21 +156,6 @@
       "order": 6
     },
     {
-      "id": "5425",
-      "title": "szdfgasd",
-      "description": "asdfasff",
-      "ingredients": [
-        "asdfasdf"
-      ],
-      "tags": [
-        "asdfasf"
-      ],
-      "difficulty": "Hard",
-      "createdAt": "2024-12-31T16:25:36.095Z",
-      "updatedAt": "2024-12-31T16:25:36.095Z",
-      "order": 7
-    },
-    {
       "id": "ee94",
       "title": "asa",
       "description": "asas",
@@ -184,6 +169,40 @@
       "createdAt": "2025-01-01T17:00:39.794Z",
       "updatedAt": "2025-01-01T17:00:39.794Z",
       "order": 8
+    },
+    {
+      "id": "e290",
+      "title": "dsgdfg",
+      "description": "dfgdfgdf",
+      "ingredients": [
+        "gdfgdf"
+      ],
+      "tags": [
+        "dfgdff"
+      ],
+      "difficulty": "Easy",
+      "createdAt": "2025-01-02T10:49:49.039Z",
+      "updatedAt": "2025-01-02T10:49:49.039Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "4818",
+      "subject": "asdasdasd",
+      "email": "hello@gmail.com",
+      "message": "sdfsdfsdf"
+    },
+    {
+      "id": "2d4f",
+      "subject": "Suggestion",
+      "email": "admin@recipt.com",
+      "message": "Hello World!"
+    },
+    {
+      "id": "8022",
+      "subject": "Sugesstion 2",
+      "email": "alivaliyev@mail.ru",
+      "message": "ASas Sas AASD ASDAS DASD ASD"
     }
   ]
 }
