@@ -18,7 +18,6 @@
     "@splidejs/react-splide": "^0.7.12",
     "axios": "^1.7.9",
     "concurrently": "^9.1.2",
-<<<<<<< HEAD
     "react-beautiful-dnd": "^13.1.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
@@ -26,16 +25,6 @@
     "react-scripts": "^5.0.1",
     "styled-components": "^6.1.13",
     "sweetalert2": "^11.6.13",
-=======
-    "json-server": "^1.0.0-beta.3",
-    "react-beautiful-dnd": "^13.1.1",
-    "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1",
-    "react-router-dom": "^7.0.2",
-    "react-scripts": "^5.0.1",
-    "styled-components": "^6.1.13",
-    "sweetalert2": "^11.15.4",
->>>>>>> 17f54c1cf2a9fc5d3ba218940692f0208065187b
     "web-vitals": "^4.2.4"
   },
   "browserslist": {

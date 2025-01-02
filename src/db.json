@@ -197,15 +197,12 @@
       "subject": "Suggestion",
       "email": "admin@recipt.com",
       "message": "Hello World!"
-<<<<<<< HEAD
     },
     {
       "id": "8022",
       "subject": "Sugesstion 2",
       "email": "alivaliyev@mail.ru",
       "message": "ASas Sas AASD ASDAS DASD ASD"
-=======
->>>>>>> 17f54c1cf2a9fc5d3ba218940692f0208065187b
     }
   ]
 }
