@@ -2,9 +2,7 @@ import React from "react";
 
 const RecipeCard = ({ recipe, onEdit, onDelete }) => {
     return (
-        <div
-            className="recipe-card"
-        >
+        < >
             <h2>{recipe.title}</h2>
             <p>{recipe.description}</p>
             <ul>
@@ -15,9 +13,9 @@ const RecipeCard = ({ recipe, onEdit, onDelete }) => {
             <p>Difficulty: {recipe.difficulty}</p>
             <p>Tags: {recipe.tags.join(", ")}</p>
             <p>Last Updated: {new Date(recipe.updatedAt).toLocaleString()}</p>
-            <button onClick={onEdit}>Edit</button>
-            <button onClick={onDelete}>Delete</button>
-        </div>
+            <button className="edit-btn" onClick={onEdit}>Edit</button>
+            <button className="delete-btn" onClick={onDelete}>Delete</button>
+        </>
     );
 };
 

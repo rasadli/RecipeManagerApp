@@ -1,28 +1,32 @@
 {
   "name": "my-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@splidejs/react-splide": "^0.7.12",
-    "cra-template": "1.2.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.1",
-    "react-scripts": "^5.0.1",
-    "styled-components": "^6.1.13",
-    "web-vitals": "^4.2.4"
-  },
+  "version": "1.0.0",
+  "main": "index.jsx",
   "scripts": {
     "start": "react-scripts start",
+    "server": "json-server --watch src/db.json --port 3001",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@splidejs/react-splide": "^0.7.12",
+    "axios": "^1.7.9",
+    "concurrently": "^9.1.2",
+    "json-server": "^1.0.0-beta.3",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-router-dom": "^7.0.2",
+    "react-scripts": "^5.0.1",
+    "styled-components": "^6.1.13",
+    "sweetalert2": "^11.15.4",
+    "web-vitals": "^4.2.4"
   },
   "browserslist": {
     "production": [

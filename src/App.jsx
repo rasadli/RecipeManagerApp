@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  // Change Router to BrowserRouter
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import RecipeList from './components/RecipeList';
@@ -8,7 +8,7 @@ import './assets/style.css';
 
 const App = () => {
     return (
-        <Router>
+        <Router> {/* BrowserRouter is used here */}
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
