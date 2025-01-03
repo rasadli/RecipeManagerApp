@@ -52,9 +52,12 @@ const Home = () => {
 
 export default Home;*/
 
-import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import Popular from './Popular';
+
+
+
+import React from "react";
+import styled, { createGlobalStyle } from "styled-components";
+import Popular from "./Popular";
 
 // Global styles
 const GlobalStyle = createGlobalStyle`
@@ -143,9 +146,8 @@ const MyProjects = () => {
       name: "Chrome Extension for Auto Form Filler",
       description:
         "A Chrome extension that intelligently fills forms using data extracted from the user's LinkedIn profile, allowing modifications and local storage.",
-      link: "hhttps://github.com/rasadli/AutoFormFiller", // Replace with actual link
+      link: "https://github.com/rasadli/AutoFormFiller", // Replace with actual link
     },
-    
     {
       name: "Recipe Manager App",
       description:
@@ -156,17 +158,18 @@ const MyProjects = () => {
 
   return (
     <ProjectsWrapper>
-      <h3>My Projects</h3>
-      <ul>
+      <h3>Our Projects</h3>
+      <ProjectsContainer>
         {projects.map((project, index) => (
-          <li key={index}>
-            <a href={project.link} target="_blank" rel="noopener noreferrer">
-              <strong>{project.name}</strong>
-            </a>
+          <ProjectCard key={index}>
+            <h4>{project.name}</h4>
             <p>{project.description}</p>
-          </li>
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              View Project
+            </a>
+          </ProjectCard>
         ))}
-      </ul>
+      </ProjectsContainer>
     </ProjectsWrapper>
   );
 };
@@ -192,43 +195,63 @@ export default Home;
 
 // Styled component for projects section
 const ProjectsWrapper = styled.div`
-  margin-top: 2rem;
-  padding: 1rem;
-  background-color: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 800px;
-  text-align: left;
+  margin-top: 3rem;
+  text-align: center;
 
   h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #222;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ff6f61;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+`;
+
+const ProjectsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+`;
+
+const ProjectCard = styled.div`
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
-  ul {
-    list-style-type: none;
+  h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
 
-    li {
-      margin-bottom: 1rem;
+  p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
 
-      a {
-        text-decoration: none;
-        color: #007BFF;
-        font-weight: bold;
-        transition: color 0.3s;
+  a {
+    text-decoration: none;
+    color: #ff6f61;
+    font-weight: bold;
+    transition: color 0.3s;
 
-        &:hover {
-          color: #0056b3;
-        }
-      }
-
-      p {
-        margin: 0.5rem 0 0;
-        font-size: 0.9rem;
-        color: #555;
-      }
+    &:hover {
+      color: #d63c2f;
     }
   }
 `;

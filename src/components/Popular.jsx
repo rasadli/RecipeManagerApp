@@ -1,6 +1,4 @@
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import '@splidejs/splide/dist/css/splide.min.css';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 function Popular() {
@@ -11,150 +9,156 @@ function Popular() {
   }, []);
 
   const getPopular = async () => {
-    const check = localStorage.getItem("popular");
-
-    if (check) {
-      setPopular(JSON.parse(check));
-    } else {
-      try {
-        const api = await fetch(
-          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
-        );
-        const data = await api.json();
-
-        if (data.recipes) {
-          localStorage.setItem("popular", JSON.stringify(data.recipes));
-          setPopular(data.recipes);
-        }
-      } catch (error) {
-        console.error("Error fetching popular recipes:", error);
+    try {
+      const response = await fetch("http://localhost:3001/recipes");
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from JSON server");
       }
+      const data = await response.json();
+
+      // Sort recipes by the newest (based on 'updatedAt' or 'createdAt') and get the top 3
+      const sortedRecipes = data
+        .filter((recipe) => recipe.updatedAt || recipe.createdAt) // Ensure date exists
+        .sort((a, b) => {
+          const dateA = new Date(b.updatedAt || b.createdAt);
+          const dateB = new Date(a.updatedAt || a.createdAt);
+          return dateA - dateB; // Sort newest first
+        })
+        .slice(0, 3); // Take the top 3 newest recipes
+
+      setPopular(sortedRecipes);
+    } catch (error) {
+      console.error("Error fetching popular recipes:", error);
     }
   };
 
   return (
-    <div>
-      <Wrapper>
-        <h3>Featured Recipe Pictures</h3>
-        <CustomSplide
-          options={{
-            perPage: 3,
-            drag: "free",
-            gap: "1.5rem",
-            pagination: true,
-            arrows: true,
-            rewind: true,
-            breakpoints: {
-              1024: {
-                perPage: 2,
-              },
-              768: {
-                perPage: 1,
-              },
-            },
-          }}
-        >
-          {popular.map((recipe) => (
-            <SplideSlide key={recipe.id}>
-              <Card>
-                <img src={recipe.image} alt={recipe.title} />
-                <p>{recipe.title}</p>
-              </Card>
-            </SplideSlide>
-          ))}
-        </CustomSplide>
-      </Wrapper>
-    </div>
+    <Wrapper>
+      <h3>Featured Recipes</h3>
+      <RecipesContainer>
+        {popular.map((recipe) => (
+          <Card key={recipe.id}>
+            <CardHeader>
+              <h4>{recipe.title}</h4>
+            </CardHeader>
+            <CardBody>
+              <p>{recipe.description}</p>
+              <IngredientsList>
+                {recipe.ingredients?.map((ingredient, index) => (
+                  <li key={index}>{ingredient}</li>
+                ))}
+              </IngredientsList>
+              <p>
+                <strong>Difficulty:</strong> {recipe.difficulty}
+              </p>
+              <p>
+                <strong>Tags:</strong> {recipe.tags?.join(", ")}
+              </p>
+              <p>
+                <strong>Last Updated:</strong>{" "}
+                {recipe.updatedAt
+                  ? new Date(recipe.updatedAt).toLocaleString()
+                  : recipe.createdAt
+                  ? new Date(recipe.createdAt).toLocaleString()
+                  : "Not Available"}
+              </p>
+            </CardBody>
+          </Card>
+        ))}
+      </RecipesContainer>
+    </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
   margin: 2rem auto;
   width: 100%;
-  max-width: 1400px; /* Centralized with a fixed width */
+  max-width: 1200px;
   text-align: center;
 
   h3 {
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ff6f61;
+    display: inline-block;
+    padding-bottom: 0.5rem;
   }
 `;
 
-const CustomSplide = styled(Splide)`
-  .splide__arrow {
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &--prev {
-      left: -1.2rem; /* Adjusted closer to the image */
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    &--next {
-      right: -1.2rem; /* Adjusted closer to the image */
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    &:hover {
-      background-color: #f0f0f0;
-    }
-  }
-
-  .splide__pagination {
-    margin-top: 2rem; /* Move pagination dots further down */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .splide__pagination__page {
-    width: 0.4rem; /* Smaller dots */
-    height: 0.4rem; /* Smaller dots */
-    background: #ccc;
-    border-radius: 50%;
-
-    &.is-active {
-      background: #555; /* Highlight active dot */
-    }
-  }
+const RecipesContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
 `;
-
 
 const Card = styled.div`
-  width: 18rem;
-  height: 24rem;
-  margin: 0 auto; /* Center the images horizontally */
-  border-radius: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  img {
-    width: 100%;
-    height: 80%;
-    object-fit: cover;
-  }
-
-  p {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 0.5rem;
-    font-size: 1rem;
-    width: 100%;
-    text-align: center;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 `;
 
+const CardHeader = styled.div`
+  background: #ff6f61;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
 
-export default Popular
+  h4 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+`;
+
+const CardBody = styled.div`
+  padding: 1.5rem;
+  text-align: left;
+
+  p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #555;
+  }
+`;
+
+const IngredientsList = styled.ul`
+  margin: 1rem 0;
+  padding-left: 1rem;
+  list-style-type: none;
+
+  li {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.2rem;
+
+    &::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background-color: #ff6f61;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+`;
+
+export default Popular;
