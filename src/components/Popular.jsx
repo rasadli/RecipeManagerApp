@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 
 function Popular() {
   const [popular, setPopular] = useState([]);
@@ -33,21 +32,21 @@ function Popular() {
   };
 
   return (
-    <Wrapper>
+    <div className="wrapper">
       <h3>Featured Recipes</h3>
-      <RecipesContainer>
+      <div className="recipes-container">
         {popular.map((recipe) => (
-          <Card key={recipe.id}>
-            <CardHeader>
+          <div key={recipe.id} className="card">
+            <div className="card-header">
               <h4>{recipe.title}</h4>
-            </CardHeader>
-            <CardBody>
+            </div>
+            <div className="card-body">
               <p>{recipe.description}</p>
-              <IngredientsList>
+              <ul className="ingredients-list">
                 {recipe.ingredients?.map((ingredient, index) => (
                   <li key={index}>{ingredient}</li>
                 ))}
-              </IngredientsList>
+              </ul>
               <p>
                 <strong>Difficulty:</strong> {recipe.difficulty}
               </p>
@@ -59,106 +58,15 @@ function Popular() {
                 {recipe.updatedAt
                   ? new Date(recipe.updatedAt).toLocaleString()
                   : recipe.createdAt
-                    ? new Date(recipe.createdAt).toLocaleString()
-                    : "Not Available"}
+                  ? new Date(recipe.createdAt).toLocaleString()
+                  : "Not Available"}
               </p>
-            </CardBody>
-          </Card>
+            </div>
+          </div>
         ))}
-      </RecipesContainer>
-    </Wrapper>
+      </div>
+    </div>
   );
 }
-
-const Wrapper = styled.div`
-  margin: 2rem auto;
-  width: 100%;
-  max-width: 1200px;
-  text-align: center;
-
-  h3 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #ff6f61;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-  }
-`;
-
-const RecipesContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-`;
-
-const Card = styled.div`
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-`;
-
-const CardHeader = styled.div`
-  background: #ff6f61;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-
-  h4 {
-    margin: 0;
-    font-size: 1.4rem;
-    font-weight: bold;
-    text-transform: capitalize;
-  }
-`;
-
-const CardBody = styled.div`
-  padding: 1.5rem;
-  text-align: left;
-
-  p {
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-    color: #555;
-  }
-`;
-
-const IngredientsList = styled.ul`
-  margin: 1rem 0;
-  padding-left: 1rem;
-  list-style-type: none;
-
-  li {
-    font-size: 0.9rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.2rem;
-
-    &::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      background-color: #ff6f61;
-      border-radius: 50%;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-`;
 
 export default Popular;

@@ -302,3 +302,237 @@
   cursor: pointer;
   margin: 10px;
 }
+
+.wrapper {
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.wrapper h3 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #ff6f61;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.recipes-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  background: #ff6f61;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.card-body {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.card-body p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.ingredients-list {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  list-style-type: none;
+}
+
+.ingredients-list li {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.ingredients-list li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: #ff6f61;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Background container */
+.background-container {
+  background-image: url('https://img.freepik.com/premium-photo/ingredients-cooking-food-background-with-herbs-vegetables-top-view-white-background_1040174-1574.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .background-container {
+    padding: 1rem;
+  }
+}
+
+/* Overlay */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
+/* Content container */
+.content-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Heading */
+.heading {
+  font-size: 3rem;
+  color: #222;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subheading */
+.subheading {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Projects Section */
+.projects-wrapper {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.projects-wrapper h3 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #ff6f61;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.projects-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.project-card {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h4 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.project-card a {
+  text-decoration: none;
+  color: #ff6f61;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.project-card a:hover {
+  color: #d63c2f;
+}
