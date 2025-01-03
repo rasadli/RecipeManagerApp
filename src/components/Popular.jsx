@@ -59,8 +59,8 @@ function Popular() {
                 {recipe.updatedAt
                   ? new Date(recipe.updatedAt).toLocaleString()
                   : recipe.createdAt
-                  ? new Date(recipe.createdAt).toLocaleString()
-                  : "Not Available"}
+                    ? new Date(recipe.createdAt).toLocaleString()
+                    : "Not Available"}
               </p>
             </CardBody>
           </Card>

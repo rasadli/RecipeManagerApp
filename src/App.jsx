@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import RecipeList from './components/RecipeList';
 import Contact from './components/Contact';
-import './assets/style.css';
 
 const App = () => {
     return (

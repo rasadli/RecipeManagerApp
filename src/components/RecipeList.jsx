@@ -4,7 +4,7 @@ import RecipeForm from "./RecipeForm";
 import Swal from "sweetalert2";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import emailjs from '@emailjs/browser';
-import SendRecipesModal from "./SendRecipesModal";  // Import the modal
+import SendRecipesModal from "./SendRecipesModal"; 
 
 const RecipeList = () => {
     const API_URL = "http://localhost:3001/recipes";
@@ -123,32 +123,32 @@ const RecipeList = () => {
         );
 
         const formattedRecipes = recipesToSend
-        .map((recipe, index) => {
-          const recipeDetails = [
-            `Recipe ${index + 1}:`,
-            `- Name: ${recipe.title || 'Not available'}`,
-            recipe.description ? `- Description: ${recipe.description}` : '- Description: Not available',
-            Array.isArray(recipe.ingredients) && recipe.ingredients.length > 0 
-              ? `- Ingredients: ${recipe.ingredients.join(", ")}` 
-              : '- Ingredients: Not available',
-            Array.isArray(recipe.steps) && recipe.steps.length > 0 
-              ? `- In   structions: ${recipe.steps.join(", ")}` 
-              : '- Instructions: Not available',
-            Array.isArray(recipe.tags) && recipe.tags.length > 0 
-              ? `- Tags: ${recipe.tags.join(", ")}` 
-              : '- Tags: Not available',
-            recipe.difficulty ? `- Difficulty: ${recipe.difficulty}` : '- Difficulty: Not available',
-            recipe.lastUpdated 
-              ? `- Last Updated: ${new Date(recipe.lastUpdated).toLocaleString()}` 
-              : '- Last Updated: Not available',
-            recipe.order !== undefined ? `- Order: ${recipe.order}` : '- Order: Not available'
-          ];
-      
-          return recipeDetails.filter(detail => detail !== '').join("\n");
-        })
-        .join("\n\n");
-      
-      console.log(formattedRecipes);
+            .map((recipe, index) => {
+                const recipeDetails = [
+                    `Recipe ${index + 1}:`,
+                    `- Name: ${recipe.title || 'Not available'}`,
+                    recipe.description ? `- Description: ${recipe.description}` : '- Description: Not available',
+                    Array.isArray(recipe.ingredients) && recipe.ingredients.length > 0
+                        ? `- Ingredients: ${recipe.ingredients.join(", ")}`
+                        : '- Ingredients: Not available',
+                    Array.isArray(recipe.steps) && recipe.steps.length > 0
+                        ? `- In   structions: ${recipe.steps.join(", ")}`
+                        : '- Instructions: Not available',
+                    Array.isArray(recipe.tags) && recipe.tags.length > 0
+                        ? `- Tags: ${recipe.tags.join(", ")}`
+                        : '- Tags: Not available',
+                    recipe.difficulty ? `- Difficulty: ${recipe.difficulty}` : '- Difficulty: Not available',
+                    recipe.lastUpdated
+                        ? `- Last Updated: ${new Date(recipe.lastUpdated).toLocaleString()}`
+                        : '- Last Updated: Not available',
+                    recipe.order !== undefined ? `- Order: ${recipe.order}` : '- Order: Not available'
+                ];
+
+                return recipeDetails.filter(detail => detail !== '').join("\n");
+            })
+            .join("\n\n");
+
+        console.log(formattedRecipes);
 
         const emailPayload = {
             subject: emailSubject,
@@ -291,7 +291,7 @@ const RecipeList = () => {
                     </Droppable>
                 </DragDropContext>
             )}
-            
+
             <div className="pagination">
                 <button
                     onClick={() => handlePageChange(currentPage - 1)}
