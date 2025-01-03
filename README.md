@@ -80,13 +80,8 @@ RecipeManagerApp/
 ## Design and Tools
 - React for UI.
 - JSON-Server for backend storage.
-- CSS frameworks (e.g., Tailwind CSS or Bootstrap) for styling.
+- CSS frameworks (Bootstrap) for styling.
 - SweetAlert for alerts.
-
-## Contribution Guidelines
-- Ensure proper use of React hooks and components.
-- Commit changes frequently with meaningful messages.
-- Follow coding standards and best practices.
 
 ## Deployment
 If deployed, include the link to the live application or GitHub Pages here.
