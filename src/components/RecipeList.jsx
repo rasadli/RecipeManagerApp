@@ -121,26 +121,34 @@ const RecipeList = () => {
         const recipesToSend = recipes.filter((recipe) =>
             selectedRecipes.includes(recipe.id)
         );
-        console.log(recipesToSend)
 
         const formattedRecipes = recipesToSend
         .map((recipe, index) => {
-          // Create an array to hold the formatted recipe details
           const recipeDetails = [
             `Recipe ${index + 1}:`,
-            `- Name: ${recipe.title}`,
-            recipe.description ? `- Description: ${recipe.description}` : '',
-            recipe.ingredients.length > 0 ? `- Ingredients: ${recipe.ingredients.join(", ")}` : '- Ingredients: Not available',
-            recipe.steps.length > 0 ? `- Instructions: ${recipe.steps.join(", ")}` : '- Instructions: Not available',
-            recipe.tags.length > 0 ? `- Tags: ${recipe.tags.join(", ")}` : '- Tags: Not available',
+            `- Name: ${recipe.title || 'Not available'}`,
+            recipe.description ? `- Description: ${recipe.description}` : '- Description: Not available',
+            Array.isArray(recipe.ingredients) && recipe.ingredients.length > 0 
+              ? `- Ingredients: ${recipe.ingredients.join(", ")}` 
+              : '- Ingredients: Not available',
+            Array.isArray(recipe.steps) && recipe.steps.length > 0 
+              ? `- In   structions: ${recipe.steps.join(", ")}` 
+              : '- Instructions: Not available',
+            Array.isArray(recipe.tags) && recipe.tags.length > 0 
+              ? `- Tags: ${recipe.tags.join(", ")}` 
+              : '- Tags: Not available',
             recipe.difficulty ? `- Difficulty: ${recipe.difficulty}` : '- Difficulty: Not available',
-            recipe.lastUpdated ? `- Last Updated: ${new Date(recipe.lastUpdated).toLocaleString()}` : '- Last Updated: Not available',
+            recipe.lastUpdated 
+              ? `- Last Updated: ${new Date(recipe.lastUpdated).toLocaleString()}` 
+              : '- Last Updated: Not available',
             recipe.order !== undefined ? `- Order: ${recipe.order}` : '- Order: Not available'
           ];
       
           return recipeDetails.filter(detail => detail !== '').join("\n");
         })
         .join("\n\n");
+      
+      console.log(formattedRecipes);
 
         const emailPayload = {
             subject: emailSubject,
@@ -283,6 +291,24 @@ const RecipeList = () => {
                     </Droppable>
                 </DragDropContext>
             )}
+            
+            <div className="pagination">
+                <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    Prev
+                </button>
+                <span>
+                    Page {currentPage} of {totalPages}
+                </span>
+                <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
+            </div>
 
             {/* Render the modal */}
             <SendRecipesModal
