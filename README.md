@@ -90,7 +90,3 @@ RecipeManagerApp/
 
 ## Deployment
 If deployed, include the link to the live application or GitHub Pages here.
-
----
-**Contact:**
-For any issues or inquiries, feel free to reach out via the Contact page in the app.
