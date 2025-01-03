@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# Recipe Manager App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+The Recipe Manager App is a React-based application that allows users to create, view, edit, delete, and organize recipes. It features JSON-Server integration to manage the backend storage for recipes and messages.
 
-## Available Scripts
+## Features
+- **Recipe Management**:
+  - Add new recipes with details like title, description, ingredients, preparation steps, tags, difficulty level, and last updated date.
+  - Edit and update existing recipes.
+  - Delete recipes.
+- **Search and Filter**:
+  - Search recipes by title, description, or ingredients.
+  - Filter recipes by tags or difficulty level.
+  - Sort recipes by various attributes (title, create/update time, tags, difficulty).
+- **Pagination** :
+  - Load more recipes as the page changes.
+- **Contact Page**:
+  - Submit messages that are stored in the JSON-Server.
 
-In the project directory, you can run:
+## Setup Instructions
 
-### `npm start`
+### Prerequisites
+- Node.js and npm installed on your system.
+- Git installed.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Steps to Run the Application
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Clone the Repository**:
+   ```bash
+   git clone <https://github.com/rasadli/RecipeManagerApp>
+   cd RecipeManagerApp
+   ```
 
-### `npm test`
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Start the JSON-Server**:
+   - Navigate to the directory containing `db.json` (or create it as needed).
+   - Start the server:
+     ```bash
+     npx json-server --watch db.json --port 3000
+     ```
 
-### `npm run build`
+4. **Run the React Application**:
+   ```bash
+   npm start
+   ```
+   - The application will be available at `http://localhost:3000`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project Structure
+```
+RecipeManagerApp/
+├── public/
+├── src/
+│   ├── components/      # React components for the app
+│   ├── pages/           # Pages like Home, Recipe, Contact
+│   ├── services/        # API service functions
+│   ├── App.js           # Main application entry point
+│   ├── index.js         # React DOM rendering
+├── db.json              # JSON-Server database
+├── package.json         # Dependencies and scripts
+├── README.md            # Documentation
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## API Endpoints
+- **Recipes**: `http://localhost:3000/recipes`
+  - GET: Fetch all recipes.
+  - POST: Add a new recipe.
+  - PUT: Update a recipe.
+  - DELETE: Remove a recipe.
+- **Messages**: `http://localhost:3000/messages`
+  - POST: Submit a contact message.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Bonus Features
+- Share recipes via JSON email format.
+- Drag and drop to reorder recipes, with persistent changes.
 
-### `npm run eject`
+## Design and Tools
+- React for UI.
+- JSON-Server for backend storage.
+- CSS frameworks (e.g., Tailwind CSS or Bootstrap) for styling.
+- SweetAlert for alerts.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contribution Guidelines
+- Ensure proper use of React hooks and components.
+- Commit changes frequently with meaningful messages.
+- Follow coding standards and best practices.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deployment
+If deployed, include the link to the live application or GitHub Pages here.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+**Contact:**
+For any issues or inquiries, feel free to reach out via the Contact page in the app.
