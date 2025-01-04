@@ -8,7 +8,6 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Create message object to send to JSON server
         const messageData = {
             subject,
             email,
@@ -16,7 +15,6 @@ const Contact = () => {
         };
 
         try {
-            // Send POST request to json-server
             const response = await fetch('http://localhost:3001/messages', {
                 method: 'POST',
                 headers: {
@@ -40,7 +38,7 @@ const Contact = () => {
     };
 
     return (
-        <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }} className='contact_section'>
             <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Contact Me</h1>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ marginBottom: '10px' }}>

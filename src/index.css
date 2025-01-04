@@ -6,17 +6,24 @@
 /* Recipe List */
 .recipe-list {
   padding: 20px;
+  text-align: center;
 }
 
 .recipe-list h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #ff6f61;
+  display: inline-block;
+  padding-bottom: 0.5rem;
 }
 
 .recipe-list input,
 .recipe-list textarea,
 .recipe-list select {
-  padding: 8px;
+  padding: 10px;
   margin: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -46,53 +53,6 @@
   gap: 20px;
 }
 
-/* Recipe Card */
-/*.recipe-card {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 20px;
-  width: calc(31% - 30px);
-  background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  height: 100%;
-}
-
-.recipe-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.recipe-card h2 {
-  font-size: 1.6em;
-  margin-bottom: 10px;
-  color: #333;
-  font-weight: bold;
-}
-
-.recipe-card p {
-  font-size: 14px;
-  margin: 8px 0;
-  color: #555;
-  line-height: 1.6;
-}
-
-.recipe-card ul {
-  list-style-type: square;
-  margin: 10px 0;
-  padding-left: 20px;
-}
-
-.recipe-card .button-container {
-  display: flex;
-  gap: 10px;
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-}*/
-
 /* Recipe Card Styles */
 .recipe-card {
   border: 1px solid #ddd;
@@ -115,8 +75,10 @@
 .recipe-card h2 {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #ffffff; /* White text */
-  background-color: #ff7043; /* Orange background */
+  color: #ffffff;
+  /* White text */
+  background-color: #ff7043;
+  /* Orange background */
   padding: 10px 15px;
   margin: 0;
   border-radius: 8px 8px 0 0;
@@ -142,13 +104,17 @@
   font-size: 0.9rem;
   margin-bottom: 8px;
   position: relative;
-  color: #333; /* Ingredients text black */
+  color: #333;
+  /* Ingredients text black */
 }
 
 .recipe-card ul li::before {
-  content: "●"; /* Round bullet */
-  color: #ff7043; /* Match the heading color */
-  font-size: 1rem; /* Slightly larger bullet */
+  content: "●";
+  /* Round bullet */
+  color: #ff7043;
+  /* Match the heading color */
+  font-size: 1rem;
+  /* Slightly larger bullet */
   margin-right: 10px;
 }
 
@@ -185,32 +151,43 @@
 
 /* Checkbox Styling */
 .recipe-card input[type="checkbox"] {
-  appearance: none; /* Remove default browser styles */
-  width: 20px; /* Checkbox size */
+  appearance: none;
+  /* Remove default browser styles */
+  width: 20px;
+  /* Checkbox size */
   height: 20px;
   position: absolute;
-  top: 15px; /* Align with the top-right corner */
+  top: 15px;
+  /* Align with the top-right corner */
   right: 15px;
   cursor: pointer;
-  z-index: 2; /* Place above the card */
-  border: 2px solid #28a745; /* Green border */
-  background-color: #fff; /* White background for unchecked state */
-  border-radius: 4px; /* Rounded corners */
+  z-index: 2;
+  /* Place above the card */
+  border: 2px solid #28a745;
+  /* Green border */
+  background-color: #fff;
+  /* White background for unchecked state */
+  border-radius: 4px;
+  /* Rounded corners */
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .recipe-card input[type="checkbox"]:checked {
-  background-color: #28a745; /* Green background */
-  border-color: #218838; /* Darker green border */
+  background-color: #28a745;
+  /* Green background */
+  border-color: #218838;
+  /* Darker green border */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .recipe-card input[type="checkbox"]:checked::before {
-  content: "✔"; /* Checkmark inside the checkbox */
+  content: "✔";
+  /* Checkmark inside the checkbox */
   font-size: 14px;
-  color: white; /* White checkmark */
+  color: white;
+  /* White checkmark */
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -219,7 +196,8 @@
 
 /* Hover effect for the checkbox */
 .recipe-card input[type="checkbox"]:hover {
-  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* Subtle green glow */
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  /* Subtle green glow */
   transition: box-shadow 0.3s ease;
 }
 
@@ -301,7 +279,8 @@
 .navbar {
   background-color: #e8d5c4;
   padding: 10px 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow */
 }
 
 .navbar-list {
@@ -323,11 +302,14 @@
   font-weight: bold;
   padding: 10px 15px;
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.3);
+  /* Semi-transparent background */
   display: flex;
-  align-items: center; /* Align emoji and text vertically */
+  align-items: center;
+  /* Align emoji and text vertically */
   justify-content: center;
-  gap: 5px; /* Space between emoji and text */
+  gap: 5px;
+  /* Space between emoji and text */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -336,24 +318,30 @@
 }
 
 .navbar-link[href="/"]::before {
-  content: '🏠'; /* Home Emoji */
+  content: '🏠';
+  /* Home Emoji */
 }
 
 .navbar-link[href="/recipes"]::before {
-  content: '📖'; /* Recipes Emoji */
+  content: '📖';
+  /* Recipes Emoji */
 }
 
 .navbar-link[href="/contact"]::before {
-  content: '📞'; /* Contact Me Emoji */
+  content: '📞';
+  /* Contact Me Emoji */
 }
 
 .navbar-link:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Light highlight on hover */
-  transform: translateY(-2px); /* Slight pop-up effect */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Light highlight on hover */
+  transform: translateY(-2px);
+  /* Slight pop-up effect */
 }
 
 .navbar-link:active {
-  transform: translateY(0); /* Reset pop-up on click */
+  transform: translateY(0);
+  /* Reset pop-up on click */
 }
 
 
@@ -605,6 +593,7 @@ body {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -679,4 +668,27 @@ body {
 
 .project-card a:hover {
   color: #d63c2f;
+}
+
+.contact_section {
+  text-align: center;
+}
+
+.contact_section h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #ff6f61;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.contact_section form {
+  text-align: left;
+}
+
+.contact_section button {
+  background-color: #ff6f61 !important;
 }

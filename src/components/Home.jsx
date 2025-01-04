@@ -7,13 +7,13 @@ const MyProjects = () => {
       name: "Chrome Extension for Auto Form Filler",
       description:
         "A Chrome extension that intelligently fills forms using data extracted from the user's LinkedIn profile, allowing modifications and local storage.",
-      link: "https://github.com/rasadli/AutoFormFiller", // Replace with actual link
+      link: "https://github.com/rasadli/AutoFormFiller",
     },
     {
       name: "Recipe Manager App",
       description:
         "A React-based app for creating, viewing, editing, and organizing recipes with attributes like ingredients, preparation steps, tags, and difficulty levels.",
-      link: "https://github.com/yourusername/recipe-manager", // Replace with actual link
+      link: "https://github.com/rasadli/RecipeManagerApp",
     },
   ];
 

@@ -4,7 +4,7 @@ import RecipeForm from "./RecipeForm";
 import Swal from "sweetalert2";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import emailjs from '@emailjs/browser';
-import SendRecipesModal from "./SendRecipesModal"; 
+import SendRecipesModal from "./SendRecipesModal";
 
 const RecipeList = () => {
     const API_URL = "http://localhost:3001/recipes";
@@ -26,11 +26,9 @@ const RecipeList = () => {
     const [editingRecipe, setEditingRecipe] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // Pagination state
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(5);
 
-    // Modal visibility state
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {

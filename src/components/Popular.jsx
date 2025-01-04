@@ -15,13 +15,12 @@ function Popular() {
       }
       const data = await response.json();
 
-      // Sort recipes by the newest (based on 'updatedAt' or 'createdAt') and get the top 3
       const sortedRecipes = data
-        .filter((recipe) => recipe.updatedAt || recipe.createdAt) // Ensure date exists
+        .filter((recipe) => recipe.updatedAt || recipe.createdAt)
         .sort((a, b) => {
           const dateA = new Date(b.updatedAt || b.createdAt);
           const dateB = new Date(a.updatedAt || a.createdAt);
-          return dateA - dateB; // Sort newest first
+          return dateA - dateB; 
         })
         .slice(0, 3); // Take the top 3 newest recipes
 
@@ -58,8 +57,8 @@ function Popular() {
                 {recipe.updatedAt
                   ? new Date(recipe.updatedAt).toLocaleString()
                   : recipe.createdAt
-                  ? new Date(recipe.createdAt).toLocaleString()
-                  : "Not Available"}
+                    ? new Date(recipe.createdAt).toLocaleString()
+                    : "Not Available"}
               </p>
             </div>
           </div>
