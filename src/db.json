@@ -184,6 +184,21 @@
       "createdAt": "2025-01-02T10:49:49.039Z",
       "updatedAt": "2025-01-02T10:49:49.039Z",
       "order": 8
+    },
+    {
+      "id": "b7e0",
+      "title": "test1223",
+      "description": "1234",
+      "ingredients": [
+        "123e4"
+      ],
+      "tags": [
+        "1234"
+      ],
+      "difficulty": "Easy",
+      "createdAt": "2025-01-04T18:13:30.346Z",
+      "updatedAt": "2025-01-04T18:13:30.347Z",
+      "order": 9
     }
   ],
   "messages": [

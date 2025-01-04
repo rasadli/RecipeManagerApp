@@ -27,20 +27,24 @@ const RecipeList = () => {
     const [loading, setLoading] = useState(true);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(5);
+    const [itemsPerPage, setItemsPerPage] = useState(12);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [shouldFetchRecipes, setShouldFetchRecipes] = useState(true);
 
     useEffect(() => {
-        fetchRecipes();
-    }, []);
+        if (shouldFetchRecipes) {
+            fetchRecipes();
+            setShouldFetchRecipes(false); // Reset the trigger
+        }
+    }, [shouldFetchRecipes]);
 
     const fetchRecipes = () => {
         setLoading(true);
         fetch(API_URL)
             .then((res) => res.json())
             .then((data) => {
-                const sortedRecipes = data.sort((a, b) => a.order - b.order);
+                const sortedRecipes = data.sort((a, b) => b.order - a.order);
                 setRecipes(sortedRecipes);
             })
             .catch(() => {
@@ -50,6 +54,12 @@ const RecipeList = () => {
     };
 
     const saveRecipe = (recipe) => {
+
+        if (!recipe.id) {
+            const maxOrder = Math.max(...recipes.map((r) => r.order || 0), 0); // Default to 0 if no order exists
+            recipe.order = maxOrder + 1;
+        }
+
         const url = recipe.id ? `${API_URL}/${recipe.id}` : API_URL;
         const method = recipe.id ? "PUT" : "POST";
 
@@ -68,6 +78,7 @@ const RecipeList = () => {
                     setRecipes((prev) => [...prev, data]);
                 }
                 setShowForm(false);
+                setShouldFetchRecipes(true);
                 Swal.fire("Success", "Recipe saved successfully!", "success");
             })
             .catch(() => {
@@ -322,6 +333,22 @@ const RecipeList = () => {
                 setEmailSubject={setEmailSubject}
                 onSend={sendSelectedRecipes}
             />
+
+
+            {showForm && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <RecipeForm
+                            recipe={editingRecipe}
+                            onSave={saveRecipe}
+                            onClose={() => {
+                                setShowForm(false);
+                                setEditingRecipe(null);
+                            }}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
