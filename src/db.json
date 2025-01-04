@@ -86,7 +86,7 @@
     },
     {
       "id": "1eb0",
-      "title": " Sushi Rolls",
+      "title": "Sushi Rolls",
       "description": "A classic Japanese dish with vinegared rice, fresh seafood, and vegetables wrapped in seaweed.",
       "ingredients": [
         "Sushi rice",
@@ -101,9 +101,8 @@
         "Healthy"
       ],
       "difficulty": "Medium",
-      "createdAt": "2025-01-04T19:08:41.288Z",
-      "updatedAt": "2025-01-04T19:08:41.288Z",
-      "order": 8
+      "createdAt": "2025-01-04T20:54:45.773Z",
+      "updatedAt": "2025-01-04T20:54:45.773Z"
     },
     {
       "id": "b6b8",

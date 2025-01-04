@@ -11,14 +11,14 @@ const RecipeForm = ({ recipe = null, onSave, onClose }) => {
 
     const handleSave = () => {
         const updatedRecipe = {
-            id: isEditMode ? recipe.id : undefined, // Only add id if in edit mode
-            title,
-            description,
-            ingredients: ingredients.split(",").map(ingredient => ingredient.trim()),
-            tags: tags.split(",").map(tag => tag.trim()),
-            difficulty,
-            createdAt: new Date().toISOString(), // For new recipes, set createdAt
-            updatedAt: new Date().toISOString(), // For both, set updatedAt
+            id: isEditMode ? recipe.id : undefined,
+            title: title.trim(),
+            description: description.trim(),
+            ingredients: ingredients.split(",").filter(ingredient => ingredient.trim() !== "").map(ingredient => ingredient.trim()),
+            tags: tags.split(",").filter(tag => tag.trim() !== "").map(tag => tag.trim()),
+            difficulty: difficulty.trim(),
+            createdAt: isEditMode ? recipe.createdAt : new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
         };
         onSave(updatedRecipe); 
     };
