@@ -47,7 +47,7 @@
 }
 
 /* Recipe Card */
-.recipe-card {
+/*.recipe-card {
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 20px;
@@ -91,7 +91,138 @@
   position: absolute;
   bottom: 15px;
   right: 15px;
+}*/
+
+/* Recipe Card Styles */
+.recipe-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  padding-bottom: 20px;
 }
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Recipe Card Heading */
+.recipe-card h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff; /* White text */
+  background-color: #ff7043; /* Orange background */
+  padding: 10px 15px;
+  margin: 0;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Recipe Card Description */
+.recipe-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 10px 15px;
+  color: #555;
+}
+
+/* Recipe Card Ingredients */
+.recipe-card ul {
+  list-style: none;
+  padding: 0 15px;
+}
+
+.recipe-card ul li {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  position: relative;
+  color: #333; /* Ingredients text black */
+}
+
+.recipe-card ul li::before {
+  content: "●"; /* Round bullet */
+  color: #ff7043; /* Match the heading color */
+  font-size: 1rem; /* Slightly larger bullet */
+  margin-right: 10px;
+}
+
+
+/* Recipe Card Buttons */
+.recipe-card button {
+  padding: 10px;
+  margin: 10px 5px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recipe-card button.edit-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.recipe-card button.edit-btn:hover {
+  background-color: #0056b3;
+}
+
+.recipe-card button.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+}
+
+.recipe-card button.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Checkbox Styling */
+.recipe-card input[type="checkbox"] {
+  appearance: none; /* Remove default browser styles */
+  width: 20px; /* Checkbox size */
+  height: 20px;
+  position: absolute;
+  top: 15px; /* Align with the top-right corner */
+  right: 15px;
+  cursor: pointer;
+  z-index: 2; /* Place above the card */
+  border: 2px solid #28a745; /* Green border */
+  background-color: #fff; /* White background for unchecked state */
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.recipe-card input[type="checkbox"]:checked {
+  background-color: #28a745; /* Green background */
+  border-color: #218838; /* Darker green border */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipe-card input[type="checkbox"]:checked::before {
+  content: "✔"; /* Checkmark inside the checkbox */
+  font-size: 14px;
+  color: white; /* White checkmark */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effect for the checkbox */
+.recipe-card input[type="checkbox"]:hover {
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* Subtle green glow */
+  transition: box-shadow 0.3s ease;
+}
+
 
 /* Buttons */
 .recipe-card button {
@@ -168,8 +299,9 @@
 
 /* Navbar Styling */
 .navbar {
-  background-color: #333;
+  background-color: #e8d5c4;
   padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
 .navbar-list {
@@ -189,29 +321,41 @@
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;
-  transition: color 0.3s ease;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  display: flex;
+  align-items: center; /* Align emoji and text vertically */
+  justify-content: center;
+  gap: 5px; /* Space between emoji and text */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar-link::before {
+  font-size: 20px;
+}
+
+.navbar-link[href="/"]::before {
+  content: '🏠'; /* Home Emoji */
+}
+
+.navbar-link[href="/recipes"]::before {
+  content: '📖'; /* Recipes Emoji */
+}
+
+.navbar-link[href="/contact"]::before {
+  content: '📞'; /* Contact Me Emoji */
 }
 
 .navbar-link:hover {
-  color: #ffd700;
-  /* Gold color on hover */
+  background-color: rgba(255, 255, 255, 0.2); /* Light highlight on hover */
+  transform: translateY(-2px); /* Slight pop-up effect */
 }
 
-
-/* Modal Overlay */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  /* Semi-transparent background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+.navbar-link:active {
+  transform: translateY(0); /* Reset pop-up on click */
 }
+
 
 /* Modal Content */
 .modal-content {
