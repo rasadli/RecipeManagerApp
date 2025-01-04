@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "index.jsx",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"npm run server\" \"react-scripts start\"",
     "server": "json-server --watch src/db.json --port 3001",
-    "dev": "concurrently \"npm run server\" \"npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

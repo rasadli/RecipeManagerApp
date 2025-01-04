@@ -27,7 +27,7 @@ const RecipeList = () => {
     const [loading, setLoading] = useState(true);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(12);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [shouldFetchRecipes, setShouldFetchRecipes] = useState(true);
@@ -52,6 +52,12 @@ const RecipeList = () => {
             })
             .finally(() => setLoading(false));
     };
+
+    // useEffect hook to handle filtering and search changes
+    useEffect(() => {
+        setShouldFetchRecipes(true);
+        setCurrentPage(1);
+    }, [filter, search]);
 
     const saveRecipe = (recipe) => {
 
@@ -257,6 +263,14 @@ const RecipeList = () => {
                     <option value="updated">Last Updated</option>
                     <option value="title">Title</option>
                 </select>
+
+                <select onChange={(e) => setItemsPerPage(Number(e.target.value))} value={itemsPerPage}>
+                    <option value={5}>5 items per page</option>
+                    <option value={10}>10 items per page</option>
+                    <option value={15}>15 items per page</option>
+                    <option value={20}>20 items per page</option>
+                </select>
+
                 <button onClick={() => setIsModalOpen(true)}>Send Selected Recipes</button>
             </div>
 
@@ -308,9 +322,18 @@ const RecipeList = () => {
                 >
                     Prev
                 </button>
-                <span>
-                    Page {currentPage} of {totalPages}
-                </span>
+
+                {/* Display Page Numbers */}
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                        key={index + 1}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={index + 1 === currentPage ? 'active' : ''}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+
                 <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
@@ -318,6 +341,7 @@ const RecipeList = () => {
                     Next
                 </button>
             </div>
+
 
             {/* Render the modal */}
             <SendRecipesModal
