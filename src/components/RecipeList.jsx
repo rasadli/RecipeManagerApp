@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import emailjs from '@emailjs/browser';
+import React, { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import Swal from "sweetalert2";
 import RecipeCard from "./RecipeCard";
 import RecipeForm from "./RecipeForm";
-import Swal from "sweetalert2";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import emailjs from '@emailjs/browser';
 import SendRecipesModal from "./SendRecipesModal";
 
 const RecipeList = () => {
