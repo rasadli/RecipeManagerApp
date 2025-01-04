@@ -1,28 +1,6 @@
 {
   "recipes": [
     {
-      "id": "2",
-      "title": "Chicken Alfredo11",
-      "description": "A creamy pasta dish with tender chicken and rich Alfredo sauce.",
-      "ingredients": [
-        "Chicken",
-        "Fettuccine",
-        "Cream",
-        "Garlic",
-        "Parmesan",
-        "Butter"
-      ],
-      "tags": [
-        "Italian",
-        "Dinner",
-        "Comfort Food"
-      ],
-      "difficulty": "Medium",
-      "createdAt": "2025-01-01T22:20:36.032Z",
-      "updatedAt": "2025-01-01T22:20:36.033Z",
-      "order": 4
-    },
-    {
       "id": "3",
       "title": "Veggie Stir-fry",
       "description": "A healthy mix of vegetables stir-fried with soy sauce.",
@@ -34,99 +12,35 @@
         "Ginger",
         "Garlic"
       ],
-      "steps": [
-        "Chop vegetables",
-        "Stir-fry vegetables",
-        "Add soy sauce and seasonings",
-        "Serve over rice"
-      ],
       "tags": [
         "Vegetarian",
         "Dinner",
         "Quick Meal"
       ],
       "difficulty": "Easy",
-      "lastUpdated": "2024-01-10T12:00:00Z",
-      "order": 2
+      "createdAt": "2025-01-04T19:22:10.083Z",
+      "updatedAt": "2025-01-04T19:22:10.083Z"
     },
     {
       "id": "4",
-      "title": "Beef Tacos",
-      "description": "Ground beef tacos with toppings like cheese, lettuce, and salsa.",
+      "title": "Mexican Tacos",
+      "description": "A fun and colorful Mexican dish with seasoned meat, fresh veggies, and salsa in a tortilla.",
       "ingredients": [
-        "Ground beef",
-        "Taco shells",
+        "Corn tortillas",
+        "Ground beef or chicken",
         "Lettuce",
         "Cheese",
         "Salsa",
-        "Taco seasoning"
-      ],
-      "steps": [
-        "Cook ground beef",
-        "Prepare taco shells",
-        "Assemble tacos with toppings"
+        "Sour cream"
       ],
       "tags": [
         "Mexican",
-        "Dinner",
+        "Lunch",
         "Quick Meal"
       ],
       "difficulty": "Easy",
-      "lastUpdated": "2024-01-12T08:00:00Z",
-      "order": 3
-    },
-    {
-      "id": "5",
-      "title": "Margherita Pizza",
-      "description": "A simple pizza topped with fresh tomatoes, mozzarella, and basil.",
-      "ingredients": [
-        "Pizza dough",
-        "Tomato sauce",
-        "Mozzarella",
-        "Basil",
-        "Olive oil"
-      ],
-      "steps": [
-        "Prepare pizza dough",
-        "Top with tomato sauce and cheese",
-        "Bake pizza",
-        "Add basil and olive oil"
-      ],
-      "tags": [
-        "Italian",
-        "Dinner",
-        "Vegetarian"
-      ],
-      "difficulty": "Medium",
-      "lastUpdated": "2024-01-15T17:45:00Z",
-      "order": 1
-    },
-    {
-      "id": "6",
-      "title": "Lemon Garlic Shrimp Pasta",
-      "description": "A flavorful shrimp pasta dish with a lemon and garlic sauce.",
-      "ingredients": [
-        "Shrimp",
-        "Spaghetti",
-        "Lemon",
-        "Garlic",
-        "Olive oil",
-        "Parmesan"
-      ],
-      "steps": [
-        "Cook shrimp",
-        "Boil spaghetti",
-        "Prepare lemon garlic sauce",
-        "Combine shrimp, pasta, and sauce"
-      ],
-      "tags": [
-        "Seafood",
-        "Dinner",
-        "Quick Meal"
-      ],
-      "difficulty": "Medium",
-      "lastUpdated": "2024-01-18T09:30:00Z",
-      "order": 5
+      "createdAt": "2025-01-04T19:11:28.251Z",
+      "updatedAt": "2025-01-04T19:11:28.251Z"
     },
     {
       "id": "7",
@@ -140,65 +54,282 @@
         "Tomatoes",
         "Vegetable broth"
       ],
-      "steps": [
-        "Chop vegetables",
-        "Cook vegetables in broth",
-        "Simmer until tender",
-        "Season to taste"
-      ],
       "tags": [
         "Vegetarian",
         "Soup",
         "Healthy"
       ],
       "difficulty": "Easy",
-      "lastUpdated": "2024-01-20T11:00:00Z",
-      "order": 6
+      "createdAt": "2025-01-04T19:13:15.071Z",
+      "updatedAt": "2025-01-04T19:13:15.071Z"
     },
     {
-      "id": "ee94",
-      "title": "asa",
-      "description": "asas",
+      "id": "fe97",
+      "title": "Chocolate Mug Cake",
+      "description": "A quick and indulgent chocolate dessert in a mug.",
       "ingredients": [
-        "asa"
+        "Cocoa powder",
+        "Flour",
+        "Sugar",
+        "Milk",
+        "Baking powder"
       ],
       "tags": [
-        "sdasa"
+        "Dessert",
+        "Quick Meal",
+        "Chocolate"
       ],
       "difficulty": "Easy",
-      "createdAt": "2025-01-01T17:00:39.794Z",
-      "updatedAt": "2025-01-01T17:00:39.794Z",
+      "createdAt": "2025-01-04T19:06:13.499Z",
+      "updatedAt": "2025-01-04T19:06:13.499Z",
       "order": 7
     },
     {
-      "id": "e290",
-      "title": "dsgdfg",
-      "description": "dfgdfgdf",
+      "id": "1eb0",
+      "title": " Sushi Rolls",
+      "description": "A classic Japanese dish with vinegared rice, fresh seafood, and vegetables wrapped in seaweed.",
       "ingredients": [
-        "gdfgdf"
+        "Sushi rice",
+        "Nori (seaweed)",
+        "Fresh salmon or tuna",
+        "Avocado",
+        "Cucumber. Soy sauce"
       ],
       "tags": [
-        "dfgdff"
+        "Japanese",
+        "Dinner",
+        "Healthy"
       ],
-      "difficulty": "Easy",
-      "createdAt": "2025-01-02T10:49:49.039Z",
-      "updatedAt": "2025-01-02T10:49:49.039Z",
+      "difficulty": "Medium",
+      "createdAt": "2025-01-04T19:08:41.288Z",
+      "updatedAt": "2025-01-04T19:08:41.288Z",
       "order": 8
     },
     {
-      "id": "b7e0",
-      "title": "test1223",
-      "description": "1234",
+      "id": "b6b8",
+      "title": "Shakshuka",
+      "description": "A Middle Eastern breakfast dish of poached eggs in a spicy tomato and bell pepper sauce.\n",
       "ingredients": [
-        "123e4"
+        "Tomatoes",
+        "Bell peppers",
+        "Eggs",
+        "Garlic",
+        "Cumin",
+        "Paprika"
       ],
       "tags": [
-        "1234"
+        "Eastern",
+        "Breakfast",
+        "Healthy"
+      ],
+      "difficulty": "Medium",
+      "createdAt": "2025-01-04T19:20:52.622Z",
+      "updatedAt": "2025-01-04T19:20:52.622Z",
+      "order": 9
+    },
+    {
+      "id": "d1d6",
+      "title": "Croissants",
+      "description": "Classic French buttery and flaky pastries with a perfect golden crust.",
+      "ingredients": [
+        "Flour",
+        "Butter",
+        "Milk",
+        "Sugar",
+        "Yeast",
+        "Salt"
+      ],
+      "tags": [
+        "French",
+        "Dessert",
+        "Baking"
+      ],
+      "difficulty": "Hard",
+      "createdAt": "2025-01-04T19:26:18.228Z",
+      "updatedAt": "2025-01-04T19:26:18.228Z",
+      "order": 10
+    },
+    {
+      "id": "50ee",
+      "title": "Tuna Salad",
+      "description": "A light and healthy tuna salad for a quick meal.",
+      "ingredients": [
+        "Canned tuna",
+        "Lettuce",
+        "Cucumbers",
+        "Lemon juice",
+        "Olive oil"
+      ],
+      "tags": [
+        "Healthy",
+        "Salad",
+        "Lunch"
       ],
       "difficulty": "Easy",
-      "createdAt": "2025-01-04T18:13:30.346Z",
-      "updatedAt": "2025-01-04T18:13:30.347Z",
-      "order": 9
+      "createdAt": "2025-01-04T19:43:04.238Z",
+      "updatedAt": "2025-01-04T19:43:04.239Z",
+      "order": 11
+    },
+    {
+      "id": "1bec",
+      "title": "Caprese Salad",
+      "description": "A refreshing Italian salad with tomatoes, mozzarella, and basil.",
+      "ingredients": [
+        "Tomatoes",
+        "Fresh mozzarella",
+        "Basil",
+        "Olive oil",
+        "Balsamic vinegar",
+        "Salt",
+        "Black pepper"
+      ],
+      "tags": [
+        "Italian",
+        "Vegetarian",
+        "Appetizer"
+      ],
+      "difficulty": "Medium",
+      "createdAt": "2025-01-04T20:01:28.334Z",
+      "updatedAt": "2025-01-04T20:01:28.334Z"
+    },
+    {
+      "id": "2d92",
+      "title": "Tiramisu",
+      "description": "A rich Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cream.",
+      "ingredients": [
+        "Ladyfingers",
+        "Mascarpone cheese",
+        "Espresso",
+        "Cocoa powder",
+        "Sugar",
+        "Eggs",
+        "Vanilla extract"
+      ],
+      "tags": [
+        "Italian",
+        "Dessert",
+        "Classic"
+      ],
+      "difficulty": "Medium",
+      "createdAt": "2025-01-04T20:00:49.338Z",
+      "updatedAt": "2025-01-04T20:00:49.338Z"
+    },
+    {
+      "id": "e704",
+      "title": "Turkish Lahmacun",
+      "description": "A thin and crispy flatbread topped with spiced minced meat.",
+      "ingredients": [
+        "Ground lamb or beef",
+        "Tomatoes",
+        "Onions",
+        "Parsley",
+        "Chili flakes",
+        "Flatbread"
+      ],
+      "tags": [
+        "Turkish",
+        "Lunch",
+        "Street Food"
+      ],
+      "difficulty": "Medium",
+      "createdAt": "2025-01-04T20:00:00.259Z",
+      "updatedAt": "2025-01-04T20:00:00.259Z"
+    },
+    {
+      "id": "ce2f",
+      "title": "Moussaka",
+      "description": "A layered Greek casserole with eggplant, ground meat, and creamy béchamel sauce.",
+      "ingredients": [
+        "Eggplant",
+        "Ground lamb or beef",
+        "Tomatoes",
+        "Onions",
+        "Béchamel sauce",
+        "Cheese",
+        "Cinnamon"
+      ],
+      "tags": [
+        "Greek",
+        "Dinner",
+        "Gourmet"
+      ],
+      "difficulty": "Hard",
+      "createdAt": "2025-01-04T19:58:21.260Z",
+      "updatedAt": "2025-01-04T19:58:21.260Z"
+    },
+    {
+      "id": "1aa6",
+      "title": "French Macarons",
+      "description": "Delicate almond-based cookies filled with flavored cream or jam.",
+      "ingredients": [
+        "Almond flour",
+        "Powdered sugar",
+        "Egg whites",
+        "Granulated sugar",
+        "Food coloring",
+        "Buttercream"
+      ],
+      "tags": [
+        "French",
+        "Dessert",
+        "Baking"
+      ],
+      "difficulty": "Hard",
+      "createdAt": "2025-01-04T19:57:54.920Z",
+      "updatedAt": "2025-01-04T19:57:54.920Z"
+    },
+    {
+      "id": "fae5",
+      "title": "Kimchi Jjigae",
+      "description": "A hearty Korean dish with aged kimchi, tofu, pork, and a spicy broth.",
+      "ingredients": [
+        "Aged kimchi",
+        "Pork belly",
+        "Tofu",
+        "Gochugaru (Korean chili flakes)",
+        "Gochujang (Korean chili paste)",
+        "Garlic",
+        "Onion",
+        "Green onions",
+        "Sesame oil",
+        "Soy sauce",
+        "Water or anchovy stock"
+      ],
+      "tags": [
+        "Korean",
+        "Dinner",
+        "Spicy"
+      ],
+      "difficulty": "Hard",
+      "createdAt": "2025-01-04T20:08:00.573Z",
+      "updatedAt": "2025-01-04T20:08:00.573Z",
+      "order": 12
+    },
+    {
+      "id": "f731",
+      "title": "Ratatouille",
+      "description": "A visually stunning French dish of layered vegetables baked with a savory herb sauce.",
+      "ingredients": [
+        "Zucchini",
+        "Eggplant",
+        "Tomatoes",
+        "Bell peppers",
+        "Garlic",
+        "Olive oil",
+        "Thyme",
+        "Rosemary",
+        "Basil",
+        "Tomato sauce"
+      ],
+      "tags": [
+        "French",
+        "Vegetarian",
+        "Gourmet"
+      ],
+      "difficulty": "Hard",
+      "createdAt": "2025-01-04T20:09:42.590Z",
+      "updatedAt": "2025-01-04T20:09:42.590Z",
+      "order": 13
     }
   ],
   "messages": [

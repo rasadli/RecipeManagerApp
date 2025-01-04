@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import emailjs from '@emailjs/browser';
+import React, { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import Swal from "sweetalert2";
 import RecipeCard from "./RecipeCard";
 import RecipeForm from "./RecipeForm";
-import Swal from "sweetalert2";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import emailjs from '@emailjs/browser';
 import SendRecipesModal from "./SendRecipesModal";
 
 const RecipeList = () => {
@@ -27,7 +27,7 @@ const RecipeList = () => {
     const [loading, setLoading] = useState(true);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(12);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [shouldFetchRecipes, setShouldFetchRecipes] = useState(true);
