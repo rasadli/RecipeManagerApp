@@ -20,7 +20,7 @@ const RecipeList = () => {
     const [selectedRecipes, setSelectedRecipes] = useState([]);
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState({ tag: "", difficulty: "" });
-    const [sort, setSort] = useState("updated");
+    const [sort, setSort] = useState("default");
     const [showForm, setShowForm] = useState(false);
     const [editingRecipe, setEditingRecipe] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -43,7 +43,7 @@ const RecipeList = () => {
         fetch(API_URL)
             .then((res) => res.json())
             .then((data) => {
-                const sortedRecipes = data.sort((a, b) => b.order - a.order);
+                const sortedRecipes = data.sort((a, b) => a.order - b.order);
                 setRecipes(sortedRecipes);
             })
             .catch(() => {
@@ -130,7 +130,7 @@ const RecipeList = () => {
             });
             return;
         }
-        
+
         if (!userName || !recipentEmail || !emailSubject) {
             Swal.fire({
                 icon: 'info',
@@ -170,7 +170,6 @@ const RecipeList = () => {
             })
             .join("\n\n");
 
-        console.log(formattedRecipes);
 
         const emailPayload = {
             subject: emailSubject,
@@ -270,6 +269,7 @@ const RecipeList = () => {
                     <option value="Hard">Hard</option>
                 </select>
                 <select onChange={(e) => setSort(e.target.value)} value={sort}>
+                    <option value="default">No sort</option>
                     <option value="updated">Last Updated</option>
                     <option value="title">Title</option>
                 </select>
