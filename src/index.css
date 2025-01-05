@@ -1,6 +1,14 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
 }
 
 /* Recipe List */
@@ -77,9 +85,7 @@
   font-size: 1.8rem;
   font-weight: bold;
   color: #ffffff;
-  /* White text */
   background-color: #ff7043;
-  /* Orange background */
   padding: 10px 15px;
   margin: 0;
   border-radius: 8px 8px 0 0;
@@ -89,16 +95,26 @@
 
 /* Recipe Card Description */
 .recipe-card p {
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
   margin: 10px 15px;
-  color: #555;
+}
+
+.recipe-card p span {
+  font-weight: bold;
+  color: #ff7043;
+  background-color: #fff3e0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Recipe Card Ingredients */
 .recipe-card ul {
   list-style: none;
   padding: 0 15px;
+  margin: 30px;
 }
 
 .recipe-card ul li {
@@ -106,16 +122,12 @@
   margin-bottom: 8px;
   position: relative;
   color: #333;
-  /* Ingredients text black */
 }
 
 .recipe-card ul li::before {
   content: "●";
-  /* Round bullet */
   color: #ff7043;
-  /* Match the heading color */
   font-size: 1rem;
-  /* Slightly larger bullet */
   margin-right: 10px;
 }
 
@@ -153,31 +165,22 @@
 /* Checkbox Styling */
 .recipe-card input[type="checkbox"] {
   appearance: none;
-  /* Remove default browser styles */
   width: 20px;
-  /* Checkbox size */
   height: 20px;
   position: absolute;
   top: 15px;
-  /* Align with the top-right corner */
   right: 15px;
   cursor: pointer;
   z-index: 2;
-  /* Place above the card */
   border: 2px solid #28a745;
-  /* Green border */
   background-color: #fff;
-  /* White background for unchecked state */
   border-radius: 4px;
-  /* Rounded corners */
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .recipe-card input[type="checkbox"]:checked {
   background-color: #28a745;
-  /* Green background */
   border-color: #218838;
-  /* Darker green border */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -185,10 +188,8 @@
 
 .recipe-card input[type="checkbox"]:checked::before {
   content: "✔";
-  /* Checkmark inside the checkbox */
   font-size: 14px;
   color: white;
-  /* White checkmark */
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -198,7 +199,6 @@
 /* Hover effect for the checkbox */
 .recipe-card input[type="checkbox"]:hover {
   box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-  /* Subtle green glow */
   transition: box-shadow 0.3s ease;
 }
 
@@ -281,7 +281,6 @@
   background-color: #e8d5c4;
   padding: 10px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* Subtle shadow */
 }
 
 .navbar-list {
@@ -304,13 +303,10 @@
   padding: 10px 15px;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.3);
-  /* Semi-transparent background */
   display: flex;
   align-items: center;
-  /* Align emoji and text vertically */
   justify-content: center;
   gap: 5px;
-  /* Space between emoji and text */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -320,29 +316,23 @@
 
 .navbar-link[href="/"]::before {
   content: '🏠';
-  /* Home Emoji */
 }
 
 .navbar-link[href="/recipes"]::before {
   content: '📖';
-  /* Recipes Emoji */
 }
 
 .navbar-link[href="/contact"]::before {
   content: '📞';
-  /* Contact Me Emoji */
 }
 
 .navbar-link:hover {
   background-color: rgba(255, 255, 255, 0.2);
-  /* Light highlight on hover */
   transform: translateY(-2px);
-  /* Slight pop-up effect */
 }
 
 .navbar-link:active {
   transform: translateY(0);
-  /* Reset pop-up on click */
 }
 
 
@@ -527,19 +517,6 @@
   transform: translateY(-50%);
 }
 
-/* Global Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  line-height: 1.6;
-}
 
 /* Background container */
 .background-container {
