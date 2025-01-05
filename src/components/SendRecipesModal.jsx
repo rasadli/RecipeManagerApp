@@ -5,8 +5,6 @@ const SendRecipesModal = ({
   onClose,
   userName,
   setUserName,
-  // userEmail,
-  // setUserEmail,
   recipentEmail,
   setRecipentEmail,
   emailSubject,
@@ -25,12 +23,6 @@ const SendRecipesModal = ({
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
-        {/* <input
-          type="email"
-          placeholder="Enter sender's email"
-          value={userEmail}
-          onChange={(e) => setUserEmail(e.target.value)}
-        /> */}
         <input
           type="email"
           placeholder="Enter recipient's email"

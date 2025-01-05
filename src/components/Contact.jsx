@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const Contact = () => {
     const [subject, setSubject] = useState('');
@@ -24,16 +25,27 @@ const Contact = () => {
             });
 
             if (response.ok) {
-                alert('Message sent successfully!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Message Sent!',
+                    text: 'Your message has been sent successfully.',
+                });
                 setSubject('');
                 setEmail('');
                 setMessage('');
             } else {
-                alert('Failed to send message');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed to Send!',
+                    text: 'There was an issue sending your message.',
+                });
             }
         } catch (error) {
-            console.error('Error sending message:', error);
-            alert('An error occurred while sending the message.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'An error occurred while sending the message.',
+            });
         }
     };
 

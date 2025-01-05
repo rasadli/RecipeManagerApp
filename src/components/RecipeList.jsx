@@ -13,7 +13,6 @@ const RecipeList = () => {
     const PUBLIC_KEY = "ei2ZgBQrzkHFNjw6y";
 
     const [userName, setUserName] = useState("");
-    // const [userEmail, setUserEmail] = useState("");
     const [recipentEmail, setRecipentEmail] = useState("");
     const [emailSubject, setEmailSubject] = useState("");
 
@@ -123,13 +122,21 @@ const RecipeList = () => {
     };
 
     const sendSelectedRecipes = () => {
-        if (selectedRecipes.length === 0) {
-            alert("No recipes selected to share!");
+        if (selectedRecipes.length == 0) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'No Recipes Selected!',
+                text: 'No recipes selected to share!',
+            });
             return;
         }
-
+        
         if (!userName || !recipentEmail || !emailSubject) {
-            alert("Please provide your name, the recipient's email, and the email subject!");
+            Swal.fire({
+                icon: 'info',
+                title: 'Incomplete Information!',
+                text: "Please provide your name, the recipient's email, and the email subject!",
+            });
             return;
         }
 
@@ -178,6 +185,9 @@ const RecipeList = () => {
                 Swal.fire("Success", "Recipes sent successfully!", "success");
                 setSelectedRecipes([]);
                 setIsModalOpen(false);  // Close modal after sending email
+                setUserName('')
+                setRecipentEmail('')
+                setEmailSubject('')
             })
             .catch(() => {
                 Swal.fire("Error", "Failed to send recipes. Please try again.", "error");
@@ -323,7 +333,6 @@ const RecipeList = () => {
                     Prev
                 </button>
 
-                {/* Display Page Numbers */}
                 {Array.from({ length: totalPages }, (_, index) => (
                     <button
                         key={index + 1}
@@ -343,14 +352,11 @@ const RecipeList = () => {
             </div>
 
 
-            {/* Render the modal */}
             <SendRecipesModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 userName={userName}
                 setUserName={setUserName}
-                // userEmail={userEmail}
-                // setUserEmail={setUserEmail}
                 recipentEmail={recipentEmail}
                 setRecipentEmail={setRecipentEmail}
                 emailSubject={emailSubject}
