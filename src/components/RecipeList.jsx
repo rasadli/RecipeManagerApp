@@ -8,9 +8,10 @@ import SendRecipesModal from "./SendRecipesModal";
 
 const RecipeList = () => {
     const API_URL = "http://localhost:3001/recipes";
-    const SERVICE_ID = "service_kmv94ha";
-    const TEMPLATE_ID = "template_sr47u4v";
-    const PUBLIC_KEY = "ei2ZgBQrzkHFNjw6y";
+    // You should place your SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY EmailJS website https://www.emailjs.com/
+    const SERVICE_ID = "<SERVICE_ID>";
+    const TEMPLATE_ID = "<TEMPLATE_ID>";
+    const PUBLIC_KEY = "<PUBLIC_KEY>";
 
     const [userName, setUserName] = useState("");
     const [recipentEmail, setRecipentEmail] = useState("");
